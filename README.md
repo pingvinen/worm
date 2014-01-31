@@ -1,7 +1,7 @@
-worm
+Worm
 ====
 
-ORM for developers that are not afraid of databases.
+ORM for developers who are not afraid of databases.
 
 These tools will generate simple code for your POCOs. The code generation is initiated by the developer and the generated code can easily be overruled/modified by the developer.
 
