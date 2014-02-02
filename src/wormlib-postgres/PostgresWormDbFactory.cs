@@ -1,5 +1,6 @@
 using System;
-using Npgsql;
+using Worm.Generator.Writing;
+using Worm.Postgres.Writing;
 
 namespace Worm.Postgres
 {
@@ -17,6 +18,13 @@ namespace Worm.Postgres
 		{
 			return new PostgresWormDbConnection(this.connectionString);
 		}
-		#endregion IWormDbFactory: create connection
+		#endregion
+
+		#region IWormDbFactory: GetClassWriter
+		public IWormClassWriter GetClassWriter()
+		{
+			return new PostgresWormClassWriter();
+		}
+		#endregion
 	}
 }

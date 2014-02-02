@@ -5,7 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib", "wormlib\wormlib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-postgres", "wormlib-postgres\wormlib-postgres.csproj", "{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySql", "MySql", "{B4359C03-0295-47BE-882D-41718B1F60DF}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-mysql", "wormlib-mysql\wormlib-mysql.csproj", "{AADB5F94-1096-4F5B-B151-85F9027503B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-mysql-generatortests", "wormlib-mysql-generatortests\wormlib-mysql-generatortests.csproj", "{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,9 +29,17 @@ Global
 		{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AADB5F94-1096-4F5B-B151-85F9027503B1} = {B4359C03-0295-47BE-882D-41718B1F60DF}
+		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A} = {B4359C03-0295-47BE-882D-41718B1F60DF}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = wormlib\wormlib.csproj
+		StartupItem = wormlib-mysql-generatortests\wormlib-mysql-generatortests.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
@@ -45,7 +57,6 @@ Global
 		$3.EventRemoveBraceStyle = NextLine
 		$3.StatementBraceStyle = NextLine
 		$3.ElseNewLinePlacement = NewLine
-		$3.ElseIfNewLinePlacement = NewLine
 		$3.CatchNewLinePlacement = NewLine
 		$3.FinallyNewLinePlacement = NewLine
 		$3.WhileNewLinePlacement = NewLine
@@ -131,9 +142,9 @@ Global
 		$18.IncludeInstanceMembers = False
 		$18.IncludeStaticEntities = True
 		$6.NamingRule = $19
-		$19.Name = Fields
+		$19.Name = Fields, public
 		$19.AffectedEntity = Field
-		$19.VisibilityMask = Protected, Public
+		$19.VisibilityMask = Public
 		$19.NamingStyle = PascalCase
 		$19.IncludeInstanceMembers = True
 		$19.IncludeStaticEntities = True
@@ -188,12 +199,19 @@ Global
 		$26.NamingStyle = PascalCase
 		$26.IncludeInstanceMembers = True
 		$26.IncludeStaticEntities = True
-		$0.VersionControlPolicy = $28
-		$28.inheritsSet = Mono
-		$0.ChangeLogPolicy = $29
-		$29.UpdateMode = None
-		$29.MessageStyle = $30
-		$30.LineAlign = 0
+		$6.NamingRule = $28
+		$28.Name = Fields, internal members
+		$28.AffectedEntity = None
+		$28.VisibilityMask = Private, Internal, Protected
+		$28.NamingStyle = CamelCase
+		$28.IncludeInstanceMembers = True
+		$28.IncludeStaticEntities = True
+		$0.VersionControlPolicy = $29
 		$29.inheritsSet = Mono
+		$0.ChangeLogPolicy = $30
+		$30.UpdateMode = None
+		$30.MessageStyle = $31
+		$31.LineAlign = 0
+		$30.inheritsSet = Mono
 	EndGlobalSection
 EndGlobal

@@ -54,10 +54,30 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
+    <Compile Include="Generator\PocoModel.cs" />
+    <Compile Include="Generator\PocoField.cs" />
+    <Compile Include="Generator\AccessModifier.cs" />
+    <Compile Include="Generator\PocoFieldCollection.cs" />
+    <Compile Include="DataAnnotations\WormDbFactoryAttribute.cs" />
+    <Compile Include="Generator\Writing\IWormClassWriter.cs" />
+    <Compile Include="Generator\Templates\WormDbClassTemplate.cs">
+      <DependentUpon>WormDbClassTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\Templates\WormDbClassTemplateCode.cs" />
+    <Compile Include="Generator\Method.cs" />
+    <Compile Include="Generator\MethodCollection.cs" />
+    <Compile Include="Generator\Templates\TemplateBase.cs" />
+    <Compile Include="Generator\Templates\DbInsertTemplateBase.cs" />
+    <Compile Include="Generator\CodeFile.cs" />
+    <Compile Include="Generator\Templates\DbUpdateTemplateBase.cs" />
+    <Compile Include="Generator\Templates\DbGetByIdOrDefaultTemplateBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Generator\" />
+    <Folder Include="Generator\Writing\" />
+    <Folder Include="Generator\Templates\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -66,4 +86,10 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <None Include="Generator\Templates\WormDbClassTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>WormDbClassTemplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 </Project>

@@ -1,0 +1,17 @@
+﻿<#@ template language="C#" #>
+<# var idField = Model.Fields.GetPrimaryKeyField(); #>
+public <#= Model.PocoClassName #> DbGetByIdOrDefault(<#= idField.Type #> id, IWormDbConnection db)
+{
+	var query = db.CreateQuery();
+	query.Sql = "select * from `<#= Model.TableName #>` where `<#= idField.ColumnName #>`=@id";
+	query.AddParam("@id", id);
+	
+	IWormDataReader reader = query.ExecuteReader();
+	while (reader.Read())
+	{
+		this.Populate(reader);
+		return this;
+	}
+	
+	return default(<#= Model.PocoClassName #>);
+}

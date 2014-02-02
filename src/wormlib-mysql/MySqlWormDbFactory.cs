@@ -1,4 +1,6 @@
 using System;
+using Worm.Generator.Writing;
+using Worm.MySql.Writing;
 
 namespace Worm.MySql
 {
@@ -16,7 +18,14 @@ namespace Worm.MySql
 		{
 			return new MySqlWormDbConnection(this.connectionString);
 		}
-		#endregion IWormDbFactory: create connection
+		#endregion
+
+		#region IWormDbFactory: GetClassWriter
+		public IWormClassWriter GetClassWriter()
+		{
+			return new MySqlWormClassWriter();
+		}
+		#endregion
 	}
 }
 

@@ -43,10 +43,28 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
+    <Compile Include="Writing\MySqlWormClassWriter.cs" />
+    <Compile Include="Writing\DbBuildQueryGetIdTemplate.cs" />
+    <Compile Include="Writing\DbInsertTemplate.cs" />
+    <Compile Include="Writing\Templates\DbInsertTemplateT4.cs">
+      <DependentUpon>DbInsertTemplateT4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Writing\Templates\DbInsertTemplateT4Code.cs" />
+    <Compile Include="Writing\DbUpdateTemplate.cs" />
+    <Compile Include="Writing\Templates\DbUpdateTemplateT4.cs">
+      <DependentUpon>DbUpdateTemplateT4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Writing\Templates\DbUpdateTemplateT4Code.cs" />
+    <Compile Include="Writing\Templates\DbGetByIdOrDefaultT4Code.cs" />
+    <Compile Include="Writing\Templates\DbGetByIdOrDefaultT4.cs">
+      <DependentUpon>DbGetByIdOrDefaultT4.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Writing\" />
+    <Folder Include="Writing\Templates\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\wormlib\wormlib.csproj">
@@ -61,4 +79,18 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <None Include="Writing\Templates\DbInsertTemplateT4.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbInsertTemplateT4.cs</LastGenOutput>
+    </None>
+    <None Include="Writing\Templates\DbUpdateTemplateT4.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbUpdateTemplateT4.cs</LastGenOutput>
+    </None>
+    <None Include="Writing\Templates\DbGetByIdOrDefaultT4.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbGetByIdOrDefaultT4.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 </Project>
