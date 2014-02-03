@@ -1,6 +1,6 @@
 using System;
-using Worm.Generator.Writing;
-using Worm.MySql.Writing;
+using Worm.MySql.CodeGeneration;
+using Worm.CodeGeneration.Internals;
 
 namespace Worm.MySql
 {

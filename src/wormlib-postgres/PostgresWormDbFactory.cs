@@ -1,6 +1,6 @@
 using System;
-using Worm.Generator.Writing;
-using Worm.Postgres.Writing;
+using Worm.Postgres.CodeGeneration;
+using Worm.CodeGeneration.Internals;
 
 namespace Worm.Postgres
 {

@@ -1,5 +1,5 @@
 using System;
-using Worm.Generator.Templates;
+using Worm.CodeGeneration.Templates;
 
 namespace Worm
 {

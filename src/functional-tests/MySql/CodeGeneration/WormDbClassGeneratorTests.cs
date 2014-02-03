@@ -1,9 +1,10 @@
 using System;
 using NUnit.Framework;
-using Worm.Generator;
 using Worm;
 using Worm.MySql;
 using Worm.DataAnnotations;
+using Worm.CodeGeneration;
+using Worm.CodeGeneration.Internals;
 
 namespace Functionaltests.MySql.CodeGeneration
 {

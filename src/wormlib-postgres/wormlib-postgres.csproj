@@ -44,7 +44,7 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
-    <Compile Include="Writing\PostgressWormTemplateProvider.cs" />
+    <Compile Include="CodeGeneration\PostgressWormTemplateProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="Writing\" />
+    <Folder Include="CodeGeneration\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

@@ -54,32 +54,34 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
-    <Compile Include="Generator\PocoField.cs" />
-    <Compile Include="Generator\AccessModifier.cs" />
-    <Compile Include="Generator\PocoFieldCollection.cs" />
     <Compile Include="DataAnnotations\WormDbFactoryAttribute.cs" />
-    <Compile Include="Generator\Templates\WormDbClassTemplate.cs">
+    <Compile Include="WormFactory.cs" />
+    <Compile Include="CodeGeneration\Templates\DbGetByIdOrDefaultTemplateBase.cs" />
+    <Compile Include="CodeGeneration\Templates\DbInsertTemplateBase.cs" />
+    <Compile Include="CodeGeneration\Templates\DbUpdateTemplateBase.cs" />
+    <Compile Include="CodeGeneration\Templates\TemplateBase.cs" />
+    <Compile Include="CodeGeneration\Templates\WormDbClassTemplate.cs">
       <DependentUpon>WormDbClassTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\Templates\WormDbClassTemplateCode.cs" />
-    <Compile Include="Generator\Method.cs" />
-    <Compile Include="Generator\MethodCollection.cs" />
-    <Compile Include="Generator\Templates\TemplateBase.cs" />
-    <Compile Include="Generator\Templates\DbInsertTemplateBase.cs" />
-    <Compile Include="Generator\CodeFile.cs" />
-    <Compile Include="Generator\Templates\DbUpdateTemplateBase.cs" />
-    <Compile Include="Generator\Templates\DbGetByIdOrDefaultTemplateBase.cs" />
-    <Compile Include="Generator\DbClassWriter.cs" />
-    <Compile Include="Generator\Writing\IWormTemplateProvider.cs" />
-    <Compile Include="Generator\PocoEntity.cs" />
-    <Compile Include="WormFactory.cs" />
+    <Compile Include="CodeGeneration\Templates\WormDbClassTemplateCode.cs" />
+    <Compile Include="CodeGeneration\CodeFile.cs" />
+    <Compile Include="CodeGeneration\DbClassWriter.cs" />
+    <Compile Include="CodeGeneration\PocoEntity.cs" />
+    <Compile Include="CodeGeneration\Internals\AccessModifier.cs" />
+    <Compile Include="CodeGeneration\Internals\Method.cs" />
+    <Compile Include="CodeGeneration\Internals\MethodCollection.cs" />
+    <Compile Include="CodeGeneration\Internals\PocoField.cs" />
+    <Compile Include="CodeGeneration\Internals\PocoFieldCollection.cs" />
+    <Compile Include="CodeGeneration\Internals\IWormTemplateProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="Generator\" />
     <Folder Include="Generator\Writing\" />
     <Folder Include="Generator\Templates\" />
+    <Folder Include="CodeGeneration\" />
+    <Folder Include="CodeGeneration\Templates\" />
+    <Folder Include="CodeGeneration\Internals\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -89,7 +91,7 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <None Include="Generator\Templates\WormDbClassTemplate.tt">
+    <None Include="CodeGeneration\Templates\WormDbClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>WormDbClassTemplate.cs</LastGenOutput>
     </None>

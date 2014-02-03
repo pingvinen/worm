@@ -1,5 +1,5 @@
 using System;
-using Worm.Generator.Writing;
+using Worm.CodeGeneration.Internals;
 
 namespace Worm
 {

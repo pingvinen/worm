@@ -1,10 +1,10 @@
 using System;
 using NUnit.Framework;
 using Moq;
-using Worm.Generator;
-using Worm.Generator.Writing;
-using Worm.Generator.Templates;
 using Worm;
+using Worm.CodeGeneration;
+using Worm.CodeGeneration.Internals;
+using Worm.CodeGeneration.Templates;
 
 namespace Wormlibtests.Generator
 {

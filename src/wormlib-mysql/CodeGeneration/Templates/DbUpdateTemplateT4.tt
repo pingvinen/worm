@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" #>
+<#@ import namespace="Worm.CodeGeneration" #>
+<#@ import namespace="Worm.CodeGeneration.Internals" #>
+<# var idField = Model.Fields.GetPrimaryKeyField(); #>
+private <#= Model.PocoClassName #> DbUpdate(IWormDbConnection db)
+{
+	var query = db.CreateQuery();
+	var columns = new List<string>();
+
+	<# foreach (PocoField f in Model.Fields.GetInsertFields()) { #>
+
+	if (this.hasChanged_<#= f.Name #>)
+	{
+		columns.Add("`<#= f.ColumnName #>`=@<#= f.Name #>");
+		query.AddParam("@<#= f.Name #>", base.<#= f.Name #>);
+	}
+	<# } #>
+
+	if (columns.Count == 0)
+	{
+		// nothing has changed... no reason to bother the server
+		return this;
+	}
+
+	query.Sql = String.Format("update `<#= Model.TableName #>` set {0} where `<#= idField.ColumnName #>`=@id limit 1", String.Join(", ", columns));
+	query.AddParam("@id", base.<#= idField.Name #>);
+
+	query.ExecuteNonQuery();
+	<# foreach (PocoField f in Model.Fields.GetPublicFields()) { #>
+
+	this.hasChanged_<#= f.Name #> = false;
+	<# } #>
+
+	return this;
+}		
