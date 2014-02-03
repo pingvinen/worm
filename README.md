@@ -1,3 +1,5 @@
+![Travis CI Build Status](https://travis-ci.org/pingvinen/worm.png)
+
 Worm
 ====
 
