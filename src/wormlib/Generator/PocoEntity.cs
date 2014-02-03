@@ -5,9 +5,9 @@ namespace Worm.Generator
 	/// <summary>
 	/// Represents a POCO that needs storage code
 	/// </summary>
-	public class PocoModel
+	public class PocoEntity
 	{
-		public PocoModel()
+		public PocoEntity()
 		{
 			this.Fields = new PocoFieldCollection();
 			this.Methods = new MethodCollection();

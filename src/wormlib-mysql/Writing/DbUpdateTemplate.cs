@@ -9,7 +9,7 @@ namespace Worm.MySql.Writing
 		public override string Render()
 		{
 			var template = new DbUpdateTemplateT4();
-			template.Model = base.Model;
+			template.Model = base.Poco;
 
 			string source = template.TransformText();
 

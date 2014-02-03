@@ -20,10 +20,10 @@ namespace Worm.MySql
 		}
 		#endregion
 
-		#region IWormDbFactory: GetClassWriter
-		public IWormClassWriter GetClassWriter()
+		#region IWormDbFactory: GetTemplateProvider
+		public virtual IWormTemplateProvider GetTemplateProvider()
 		{
-			return new MySqlWormClassWriter();
+			return new MySqlWormTemplateProvider();
 		}
 		#endregion
 	}

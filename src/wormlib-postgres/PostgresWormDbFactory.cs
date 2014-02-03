@@ -20,10 +20,10 @@ namespace Worm.Postgres
 		}
 		#endregion
 
-		#region IWormDbFactory: GetClassWriter
-		public IWormClassWriter GetClassWriter()
+		#region IWormDbFactory: GetTemplateProvider
+		public IWormTemplateProvider GetTemplateProvider()
 		{
-			return new PostgresWormClassWriter();
+			return new PostgressWormTemplateProvider();
 		}
 		#endregion
 	}

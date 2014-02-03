@@ -43,7 +43,6 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
-    <Compile Include="Writing\MySqlWormClassWriter.cs" />
     <Compile Include="Writing\DbBuildQueryGetIdTemplate.cs" />
     <Compile Include="Writing\DbInsertTemplate.cs" />
     <Compile Include="Writing\Templates\DbInsertTemplateT4.cs">
@@ -59,6 +58,7 @@
     <Compile Include="Writing\Templates\DbGetByIdOrDefaultT4.cs">
       <DependentUpon>DbGetByIdOrDefaultT4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Writing\MySqlWormTemplateProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

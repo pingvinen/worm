@@ -6,6 +6,6 @@ namespace Worm
 	public interface IWormDbFactory
 	{
 		IWormDbConnection CreateConnection();
-		IWormClassWriter GetClassWriter();
+		IWormTemplateProvider GetTemplateProvider();
 	}
 }

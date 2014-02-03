@@ -54,12 +54,10 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
-    <Compile Include="Generator\PocoModel.cs" />
     <Compile Include="Generator\PocoField.cs" />
     <Compile Include="Generator\AccessModifier.cs" />
     <Compile Include="Generator\PocoFieldCollection.cs" />
     <Compile Include="DataAnnotations\WormDbFactoryAttribute.cs" />
-    <Compile Include="Generator\Writing\IWormClassWriter.cs" />
     <Compile Include="Generator\Templates\WormDbClassTemplate.cs">
       <DependentUpon>WormDbClassTemplate.tt</DependentUpon>
     </Compile>
@@ -71,6 +69,10 @@
     <Compile Include="Generator\CodeFile.cs" />
     <Compile Include="Generator\Templates\DbUpdateTemplateBase.cs" />
     <Compile Include="Generator\Templates\DbGetByIdOrDefaultTemplateBase.cs" />
+    <Compile Include="Generator\DbClassWriter.cs" />
+    <Compile Include="Generator\Writing\IWormTemplateProvider.cs" />
+    <Compile Include="Generator\PocoEntity.cs" />
+    <Compile Include="WormFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

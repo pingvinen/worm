@@ -4,13 +4,13 @@ namespace Worm.Generator.Templates
 {
 	public partial class WormDbClassTemplate
 	{
-		public PocoModel Model { get; set; }
-		public DbGetByIdOrDefaultTemplateBase DbGetByIdOrDefaultTemplate { get; set; }
-		public DbInsertTemplateBase DbInsertTemplate { get; set; }
-		public DbUpdateTemplateBase DbUpdateTemplate { get; set; }
+		public virtual PocoEntity Model { get; set; }
+		public virtual DbGetByIdOrDefaultTemplateBase DbGetByIdOrDefaultTemplate { get; set; }
+		public virtual DbInsertTemplateBase DbInsertTemplate { get; set; }
+		public virtual DbUpdateTemplateBase DbUpdateTemplate { get; set; }
 
 		#region Populate for field
-		public string GetPopulateForField(PocoField field)
+		public virtual string GetPopulateForField(PocoField field)
 		{
 			string def = String.Format("default({0})", field.Type);
 
@@ -31,7 +31,7 @@ namespace Worm.Generator.Templates
 		#endregion
 
 		#region Output method if exists
-		public bool OutputMethodIfExists(string methodName)
+		public virtual bool OutputMethodIfExists(string methodName)
 		{
 			var method = this.Model.Methods.GetMethodByName(methodName);
 

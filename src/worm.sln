@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functional tests", "Functional tests", "{702B13BF-17FF-4E75-AB22-9DEB3A1088E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "functional-tests", "functional-tests\functional-tests.csproj", "{91F77217-4DA2-4A8E-B1C1-8067F99855AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit tests", "Unit tests", "{69E6ECF3-2822-43FB-AE2F-05AA3A34AAF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-tests", "wormlib-tests\wormlib-tests.csproj", "{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib", "wormlib\wormlib.csproj", "{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-postgres", "wormlib-postgres\wormlib-postgres.csproj", "{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySql", "MySql", "{B4359C03-0295-47BE-882D-41718B1F60DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-mysql", "wormlib-mysql\wormlib-mysql.csproj", "{AADB5F94-1096-4F5B-B151-85F9027503B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-mysql-generatortests", "wormlib-mysql-generatortests\wormlib-mysql-generatortests.csproj", "{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-postgres", "wormlib-postgres\wormlib-postgres.csproj", "{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F77217-4DA2-4A8E-B1C1-8067F99855AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F77217-4DA2-4A8E-B1C1-8067F99855AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F77217-4DA2-4A8E-B1C1-8067F99855AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F77217-4DA2-4A8E-B1C1-8067F99855AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,17 +41,13 @@ Global
 		{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AADB5F94-1096-4F5B-B151-85F9027503B1} = {B4359C03-0295-47BE-882D-41718B1F60DF}
-		{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A} = {B4359C03-0295-47BE-882D-41718B1F60DF}
+		{91F77217-4DA2-4A8E-B1C1-8067F99855AD} = {702B13BF-17FF-4E75-AB22-9DEB3A1088E4}
+		{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2} = {69E6ECF3-2822-43FB-AE2F-05AA3A34AAF0}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = wormlib-mysql-generatortests\wormlib-mysql-generatortests.csproj
+		StartupItem = wormlib-mysql\wormlib-mysql.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical

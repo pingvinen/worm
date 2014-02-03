@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D2D8C4D5-AD61-4C4B-9075-8D4C196E045A}</ProjectGuid>
+    <ProjectGuid>{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MySqlGeneratorTests</RootNamespace>
-    <AssemblyName>wormlib-mysql-generatortests</AssemblyName>
+    <RootNamespace>Wormlibtests</RootNamespace>
+    <AssemblyName>wormlib-tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,12 +30,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\libs\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\libs\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\libs\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -43,12 +44,11 @@
       <Project>{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}</Project>
       <Name>wormlib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\wormlib-mysql\wormlib-mysql.csproj">
-      <Project>{AADB5F94-1096-4F5B-B151-85F9027503B1}</Project>
-      <Name>wormlib-mysql</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WriterClassDefinitionTests.cs" />
+    <Folder Include="Generator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generator\DbClassWriterTests.cs" />
   </ItemGroup>
 </Project>
