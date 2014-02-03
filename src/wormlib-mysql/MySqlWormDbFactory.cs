@@ -1,4 +1,6 @@
 using System;
+using Worm.MySql.CodeGeneration;
+using Worm.CodeGeneration.Internals;
 
 namespace Worm.MySql
 {
@@ -16,7 +18,14 @@ namespace Worm.MySql
 		{
 			return new MySqlWormDbConnection(this.connectionString);
 		}
-		#endregion IWormDbFactory: create connection
+		#endregion
+
+		#region IWormDbFactory: GetTemplateProvider
+		public virtual IWormTemplateProvider GetTemplateProvider()
+		{
+			return new MySqlWormTemplateProvider();
+		}
+		#endregion
 	}
 }
 

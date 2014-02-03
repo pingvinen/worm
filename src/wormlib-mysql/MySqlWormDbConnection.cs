@@ -28,7 +28,7 @@ namespace Worm.MySql
 			cmd.CommandText = sql;
 			return new WormDbQuery(cmd);
 		}		
-#endregion
+		#endregion
 		
 		#region IDisposable implementation
 		~MySqlWormDbConnection()
@@ -81,7 +81,7 @@ namespace Worm.MySql
 				disposed = true;
 			}
 		}
-#endregion
+		#endregion
 	}
 }
 

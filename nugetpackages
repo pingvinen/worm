@@ -3,20 +3,26 @@
 TMPZIP=/tmp/from_nuget.zip
 TMPDIR=/tmp/from_nuget
 DEST=libs/
+DOCLEANUP=true
 
 function get_package() {
 	local name=$1
 	local version=$2
 	local dir=$3
+	local tmpdir="${TMPDIR}_$name"
 	echo "$name $version"
 	wget --quiet -O $TMPZIP http://packages.nuget.org/api/v2/package/$name/$version
-	unzip -q -o $TMPZIP lib/* -d $TMPDIR
+	unzip -q -o $TMPZIP lib/* -d $tmpdir
 
-	find $TMPDIR/lib/$dir -type f \( -iname "*.dll" -o -iname "*.xml" \) -exec mv '{}' $DEST \;
+	find $tmpdir/lib/$dir -type f \( -iname "*.dll" -o -iname "*.xml" \) -exec mv '{}' $DEST \;
 
-	rm $TMPDIR -rf
-	rm $TMPZIP
+	if $DOCLEANUP ; then
+		rm $tmpdir -rf
+		rm $TMPZIP
+	fi
 }
 
 get_package "Npgsql" 2.0.14.3 "net40"
 get_package "MySql.Data" 6.8.3 "net40"
+get_package "NUnit" 2.6.3 ""
+get_package "Moq" 4.2.1312.1622 "net40"

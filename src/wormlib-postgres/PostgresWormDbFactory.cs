@@ -1,5 +1,6 @@
 using System;
-using Npgsql;
+using Worm.Postgres.CodeGeneration;
+using Worm.CodeGeneration.Internals;
 
 namespace Worm.Postgres
 {
@@ -17,6 +18,13 @@ namespace Worm.Postgres
 		{
 			return new PostgresWormDbConnection(this.connectionString);
 		}
-		#endregion IWormDbFactory: create connection
+		#endregion
+
+		#region IWormDbFactory: GetTemplateProvider
+		public IWormTemplateProvider GetTemplateProvider()
+		{
+			return new PostgressWormTemplateProvider();
+		}
+		#endregion
 	}
 }

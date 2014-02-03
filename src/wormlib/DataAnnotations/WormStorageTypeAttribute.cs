@@ -2,9 +2,9 @@ using System;
 
 namespace Worm.DataAnnotations
 {
-	public class WormStorageType
+	public class WormStorageTypeAttribute : Attribute
 	{
-		public WormStorageType ()
+		public WormStorageTypeAttribute (string dbType)
 		{
 		}
 	}

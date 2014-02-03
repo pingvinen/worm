@@ -43,10 +43,28 @@
     <Compile Include="..\VersionNumber.cs">
       <Link>VersionNumber.cs</Link>
     </Compile>
+    <Compile Include="CodeGeneration\Templates\DbInsertTemplateT4.cs">
+      <DependentUpon>DbInsertTemplateT4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeGeneration\Templates\DbInsertTemplateT4Code.cs" />
+    <Compile Include="CodeGeneration\Templates\DbUpdateTemplateT4.cs">
+      <DependentUpon>DbUpdateTemplateT4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeGeneration\Templates\DbUpdateTemplateT4Code.cs" />
+    <Compile Include="CodeGeneration\Templates\DbGetByIdOrDefaultT4Code.cs" />
+    <Compile Include="CodeGeneration\Templates\DbGetByIdOrDefaultT4.cs">
+      <DependentUpon>DbGetByIdOrDefaultT4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CodeGeneration\DbBuildQueryGetIdTemplate.cs" />
+    <Compile Include="CodeGeneration\DbInsertTemplate.cs" />
+    <Compile Include="CodeGeneration\DbUpdateTemplate.cs" />
+    <Compile Include="CodeGeneration\MySqlWormTemplateProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="CodeGeneration\" />
+    <Folder Include="CodeGeneration\Templates\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\wormlib\wormlib.csproj">
@@ -61,4 +79,18 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <None Include="CodeGeneration\Templates\DbInsertTemplateT4.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbInsertTemplateT4.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\Templates\DbUpdateTemplateT4.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbUpdateTemplateT4.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\Templates\DbGetByIdOrDefaultT4.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DbGetByIdOrDefaultT4.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 </Project>
