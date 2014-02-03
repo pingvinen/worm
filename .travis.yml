@@ -1,0 +1,13 @@
+## Travis CI Integration
+
+language: c
+
+env:
+  - TESTDLL=src/wormlib-tests/bin/Debug/wormlib-tests.dll
+  - TESTDLL=src/functional-tests/bin/Debug/functional-tests.dll
+
+install:
+  - sudo apt-get install mono-devel mono-gmcs nunit-console
+script:
+  - xbuild src/worm.sln
+  - nunit-console $TESTDLL
