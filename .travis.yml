@@ -7,7 +7,10 @@ env:
   - TESTDLL=src/functional-tests/bin/Debug/functional-tests.dll
 
 install:
-  - sudo apt-get install mono-devel mono-gmcs nunit-console
+  - sudo add-apt-repository ppa:ermshiperete/monodevelop
+  - sudo apt-get update
+  #- sudo apt-get install mono-devel mono-gmcs nunit-console
+  - sudo apt-get install mono-3
 script:
   - xbuild src/worm.sln
   - nunit-console $TESTDLL
