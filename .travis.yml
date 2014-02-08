@@ -10,7 +10,9 @@ install:
   - sudo add-apt-repository ppa:ermshiperete/monodevelop -y
   - sudo apt-get update
   #- sudo apt-get install mono-devel mono-gmcs nunit-console
-  - sudo apt-get install mono-3
+  - sudo apt-get install mono-3 nunit-console
 script:
+  - ls -l /opt/
+  - which xbuild
   - xbuild src/worm.sln
   - nunit-console $TESTDLL
