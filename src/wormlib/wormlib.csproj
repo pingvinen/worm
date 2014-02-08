@@ -77,8 +77,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="Generator\Writing\" />
-    <Folder Include="Generator\Templates\" />
     <Folder Include="CodeGeneration\" />
     <Folder Include="CodeGeneration\Templates\" />
     <Folder Include="CodeGeneration\Internals\" />
