@@ -80,6 +80,8 @@
     <Compile Include="Parsing\Internals\XbuildCompiler.cs" />
     <Compile Include="Parsing\Internals\MicrosoftBuildCompiler.cs" />
     <Compile Include="Parsing\Parser.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WAssembly.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -89,6 +91,7 @@
     <Folder Include="CodeGeneration\Internals\" />
     <Folder Include="Parsing\" />
     <Folder Include="Parsing\Internals\" />
+    <Folder Include="Parsing\Internals\Reflection\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
