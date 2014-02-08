@@ -12,7 +12,6 @@ install:
   #- sudo apt-get install mono-devel mono-gmcs nunit-console
   - sudo apt-get install mono-3 nunit-console
 script:
-  - ls -l /opt/
-  - which xbuild
-  - xbuild src/worm.sln
+  - ls -l /opt/monodevelop/
+  - /opt/monodevelop/bin/xbuild src/worm.sln
   - nunit-console $TESTDLL
