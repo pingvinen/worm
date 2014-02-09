@@ -10,8 +10,11 @@ namespace Worm.Parsing
 	{
 		public ICompiler Compiler { get; set; }
 
-		public Parser()
+		protected WormFactory factory;
+
+		public Parser(WormFactory factory)
 		{
+			this.factory = factory;
 			this.Compiler = new XbuildCompiler();
 		}
 
@@ -20,11 +23,12 @@ namespace Worm.Parsing
 		{
 			PocoModel result = new PocoModel();
 
+			TypeToEntity typeToEntity = this.factory.GetTypeToEntity();
 			WAssembly asm = new WAssembly(this.Compiler.CompileProject(projectFileName, configurationToCompile));
 
-			foreach (WType cur in asm.GetTypes(xx => { return xx.HasAttribute(typeof(WormDbFactoryAttribute)); }))
+			foreach (WType cur in asm.GetTypes(xx => xx.HasAttribute(typeof(WormDbFactoryAttribute))))
 			{
-				Console.WriteLine(cur.Name);
+				result.Entities.Add(typeToEntity.Parse(cur));
 			}
 
 			return result;

@@ -83,6 +83,9 @@
     <Compile Include="Parsing\Internals\Reflection\WAssembly.cs" />
     <Compile Include="Parsing\Internals\Reflection\WType.cs" />
     <Compile Include="CodeGeneration\PocoModel.cs" />
+    <Compile Include="Parsing\Internals\TypeToEntity.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WProperty.cs" />
+    <Compile Include="Parsing\Internals\PropertyToPocoField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
