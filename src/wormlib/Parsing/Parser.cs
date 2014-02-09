@@ -1,13 +1,8 @@
 using System;
-using Worm.CodeGeneration;
-using System.Diagnostics;
-using System.IO;
 using Worm.Parsing.Internals;
 using Worm.Parsing.Internals.Reflection;
 using Worm.DataAnnotations;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
+using Worm.CodeGeneration;
 
 namespace Worm.Parsing
 {
@@ -20,36 +15,20 @@ namespace Worm.Parsing
 			this.Compiler = new XbuildCompiler();
 		}
 
-		protected void LoadReferencedAssemblies(WAssembly asm)
+		#region Parse
+		public PocoModel Parse(string projectFileName, string configurationToCompile = "Debug")
 		{
-			var loaded = new Dictionary<string, bool>();
-			foreach (Assembly x in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				loaded.Add(x.GetName().Name+".dll", true);
-			}
+			PocoModel result = new PocoModel();
 
-			FileInfo fi;
-			foreach (string fullpath in Directory.GetFiles("/tmp/buildtests/", "*.dll"))
-			{
-				fi = new FileInfo(fullpath);
-
-				if (!loaded.ContainsKey(fi.Name))
-				{
-					Assembly.LoadFile(fullpath);
-					loaded.Add(fi.Name, true);
-				}
-			}
-		}
-
-		public void Parse(string projectFileName, string configurationToCompile = "Debug")
-		{
 			WAssembly asm = new WAssembly(this.Compiler.CompileProject(projectFileName, configurationToCompile));
-			this.LoadReferencedAssemblies(asm);
 
 			foreach (WType cur in asm.GetTypes(xx => { return xx.HasAttribute(typeof(WormDbFactoryAttribute)); }))
 			{
 				Console.WriteLine(cur.Name);
 			}
+
+			return result;
 		}
+		#endregion
 	}
 }

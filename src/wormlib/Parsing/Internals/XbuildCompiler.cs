@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Worm.Parsing.Internals
 {
@@ -19,7 +20,6 @@ namespace Worm.Parsing.Internals
 			this.OutputPath = "/tmp/buildtests";
 			this.CleanOutputPathBeforeCompiling = true;
 		}
-
 
 		#region ICompiler implementation
 		public Assembly CompileProject(string projectFilename, string configuration = "Debug")
@@ -39,10 +39,15 @@ namespace Worm.Parsing.Internals
 			Process p = Process.Start(psi);
 			p.WaitForExit();
 
-			return Assembly.LoadFile(String.Format("{0}/{1}", this.OutputPath, assemblyFile));
+			Assembly asm = Assembly.LoadFile(String.Format("{0}/{1}", this.OutputPath, assemblyFile));
+
+			this.LoadAssemblies();
+
+			return asm;
 		}
 		#endregion
 
+		#region Clean output path
 		protected void CleanOutputPath()
 		{
 			if (!Directory.Exists(this.OutputPath))
@@ -52,7 +57,9 @@ namespace Worm.Parsing.Internals
 
 			Directory.Delete(this.OutputPath, true);
 		}
+		#endregion
 
+		#region Get assembly filename
 		protected string GetAssemblyFilename(string projectFilename)
 		{
 			var xml = XElement.Load(projectFilename);
@@ -77,5 +84,42 @@ namespace Worm.Parsing.Internals
 
 			return String.Format("{0}.{1}", assemblyName, ext);
 		}
+		#endregion
+
+		#region Load assemblies
+		protected void LoadAssemblies()
+		{
+			var loaded = new Dictionary<string, bool>();
+			foreach (Assembly x in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				loaded.Add(x.GetName().Name+".dll", true);
+			}
+
+			FileInfo fi;
+			foreach (string fullpath in this.GetFiles(this.OutputPath, "*.dll", "*.DLL", "*.exe", "*.EXE"))
+			{
+				fi = new FileInfo(fullpath);
+
+				if (!loaded.ContainsKey(fi.Name))
+				{
+					Assembly.LoadFile(fullpath);
+					loaded.Add(fi.Name, true);
+				}
+			}
+		}
+		#endregion
+
+		#region Get files
+		protected IEnumerable<string> GetFiles(string directory, params string[] patterns)
+		{
+			foreach (string curPattern in patterns)
+			{
+				foreach (string filename in Directory.GetFiles(directory, curPattern))
+				{
+					yield return filename;
+				}
+			}
+		}
+		#endregion
 	}
 }

@@ -15,15 +15,9 @@ namespace Worm.Parsing.Internals.Reflection
 		public WAssembly(Assembly asm)
 		{
 			this.assembly = asm;
-
-			asm.GetReferencedAssemblies();
 		}
 
-		public virtual IList<AssemblyName> GetReferencedAssemblies()
-		{
-			return new List<AssemblyName>(this.assembly.GetReferencedAssemblies());
-		}
-
+		#region Get types
 		public virtual IEnumerable<WType> GetTypes(Func<WType, bool> predicate)
 		{
 			WType w;
@@ -42,5 +36,6 @@ namespace Worm.Parsing.Internals.Reflection
 		{
 			return this.GetTypes(xx => { return true; });
 		}
+		#endregion
 	}
 }
