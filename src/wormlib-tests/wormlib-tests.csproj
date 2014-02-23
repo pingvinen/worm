@@ -46,9 +46,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Generator\" />
+    <Folder Include="CodeGeneration\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generator\DbClassWriterTests.cs" />
+    <Compile Include="CodeGeneration\DbClassWriterTests.cs" />
   </ItemGroup>
 </Project>

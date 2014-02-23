@@ -6,7 +6,7 @@ using Worm.CodeGeneration;
 using Worm.CodeGeneration.Internals;
 using Worm.CodeGeneration.Templates;
 
-namespace Wormlibtests.Generator
+namespace Wormlibtests.CodeGeneration
 {
 	[TestFixture]
 	public class DbClassWriterTests
