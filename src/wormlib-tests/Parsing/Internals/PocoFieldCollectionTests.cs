@@ -129,5 +129,31 @@ namespace Wormlibtests.Parsing.Internals
 			Assert.IsEmpty(actual);
 		}
 		#endregion
+
+		#region GetInsertFields
+		[Test]
+		public void GetInsertFields_emptyFieldSet()
+		{
+			IEnumerable<PocoField> actual = this.collection.GetInsertFields();
+			Assert.IsEmpty(actual);
+		}
+
+		[Test]
+		public void GetInsertFields_returnsNonPrimaryKeyFields()
+		{
+			this.field1.SetupGet(xx => xx.IsPrimaryKey).Returns(false);
+			this.field2.SetupGet(xx => xx.IsPrimaryKey).Returns(true);
+			this.field3.SetupGet(xx => xx.IsPrimaryKey).Returns(false);
+
+			this.collection.Add(this.field1.Object);
+			this.collection.Add(this.field2.Object);
+			this.collection.Add(this.field3.Object);
+
+			IList<PocoField> actual = this.collection.GetInsertFields().ToList();
+
+			Assert.AreEqual(this.field1.Object, actual[0]);
+			Assert.AreEqual(this.field3.Object, actual[1]);
+		}
+		#endregion
 	}
 }
