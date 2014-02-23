@@ -41,7 +41,7 @@ namespace Worm.Parsing.Internals.Reflection
 		#region Has attribute
 		public virtual bool HasAttribute(Type attributeType)
 		{
-			return this.type.GetCustomAttributes(attributeType, true).Count() > 0;
+			return this.type.GetCustomAttributes(attributeType, true).Any();
 		}
 		#endregion
 
