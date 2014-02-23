@@ -47,8 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeGeneration\" />
+    <Folder Include="Parsing\" />
+    <Folder Include="Parsing\Internals\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGeneration\DbClassWriterTests.cs" />
+    <Compile Include="Parsing\Internals\TypeToEntityTests.cs" />
+    <Compile Include="Parsing\Internals\UniTestWormDbFactory.cs" />
   </ItemGroup>
 </Project>

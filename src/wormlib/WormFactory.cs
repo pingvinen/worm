@@ -18,7 +18,7 @@ namespace Worm
 			return new PocoEntity();
 		}
 
-		public PocoField getPocoField()
+		public virtual PocoField GetPocoField()
 		{
 			return new PocoField();
 		}
@@ -28,7 +28,7 @@ namespace Worm
 			return new TypeToEntity(this);
 		}
 
-		public PropertyToPocoField GetPropertyToPocoField()
+		public virtual PropertyToPocoField GetPropertyToPocoField()
 		{
 			return new PropertyToPocoField(this);
 		}

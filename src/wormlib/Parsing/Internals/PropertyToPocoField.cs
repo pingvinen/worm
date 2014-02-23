@@ -15,7 +15,7 @@ namespace Worm.Parsing.Internals
 
 		public virtual PocoField Parse(WProperty property)
 		{
-			PocoField result = this.factory.getPocoField();
+			PocoField result = this.factory.GetPocoField();
 
 			result.Name = property.Name;
 

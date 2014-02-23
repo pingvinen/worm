@@ -90,7 +90,7 @@ namespace Worm.Parsing.Internals.Reflection
 		#endregion
 
 		#region Get properties
-		public IEnumerable<WProperty> GetProperties()
+		public virtual IEnumerable<WProperty> GetProperties()
 		{
 			foreach (PropertyInfo pi in this.type.GetProperties())
 			{
