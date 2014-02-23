@@ -54,5 +54,6 @@
     <Compile Include="CodeGeneration\DbClassWriterTests.cs" />
     <Compile Include="Parsing\Internals\TypeToEntityTests.cs" />
     <Compile Include="Parsing\Internals\UniTestWormDbFactory.cs" />
+    <Compile Include="Parsing\Internals\PocoFieldCollectionTests.cs" />
   </ItemGroup>
 </Project>
