@@ -7,6 +7,9 @@ namespace Worm.DataAnnotations
 	{
 		public WormColumnNameAttribute (string columnName)
 		{
+			this.Value = columnName;
 		}
+
+		public string Value { get; set; }
 	}
 }

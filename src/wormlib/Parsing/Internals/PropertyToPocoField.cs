@@ -26,7 +26,29 @@ namespace Worm.Parsing.Internals
 				result.AllowNull = allowNullAttribute.Value;
 			}
 
+			string columnName = this.GetValueFromAttributeOrDefault<WormColumnNameAttribute,string>(
+				  property
+				, (xx) => xx.Value
+				, property.Name
+			);
+			result.ColumnName = columnName;
+
 			return result;
+		}
+
+		private TResult GetValueFromAttributeOrDefault<TAttribute, TResult>(
+			  WProperty property
+			, Func<TAttribute,TResult> getter
+			, TResult defaultValue)
+			where TAttribute : Attribute
+		{
+			var attr = property.GetAttribute<TAttribute>();
+			if (attr != default(TAttribute))
+			{
+				return getter(attr);
+			}
+
+			return defaultValue;
 		}
 	}
 }

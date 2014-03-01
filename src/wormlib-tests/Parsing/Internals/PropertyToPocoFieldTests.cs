@@ -74,6 +74,28 @@ namespace Wormlibtests.Parsing.Internals
 		}
 
 		[Test]
+		public void Parse_ColumnNameIsSet_HasAttribute()
+		{
+			var attr = new WormColumnNameAttribute("das_column");
+			this.property.Setup(xx => xx.GetAttribute<WormColumnNameAttribute>()).Returns(attr);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.ColumnName = It.Is<string>(actual => "das_column".Equals(actual)), Times.Once);
+		}
+
+		[Test]
+		public void Parse_ColumnNameIsSet_DefaultToPropertyName()
+		{
+			this.property.Setup(xx => xx.GetAttribute<WormColumnNameAttribute>()).Returns(default(WormColumnNameAttribute));
+			this.property.SetupGet(xx => xx.Name).Returns("PropertyName");
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.ColumnName = It.Is<string>(actual => "PropertyName".Equals(actual)), Times.Once);
+		}
+
+		[Test]
 		public void Parse_ReturnsInstance()
 		{
 			PocoField actual = this.propToEntity.Parse(this.property.Object);
