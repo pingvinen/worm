@@ -4,6 +4,7 @@ using Moq;
 using Worm.Parsing.Internals.Reflection;
 using System.Reflection;
 using Worm.CodeGeneration.Internals;
+using Worm.DataAnnotations;
 
 namespace Wormlibtests.Parsing.Internals.Reflection
 {
@@ -97,6 +98,34 @@ namespace Wormlibtests.Parsing.Internals.Reflection
 			this.pi.SetupGet(xx => xx.PropertyType).Returns(this.propertyType.Object);
 
 			Assert.AreEqual(this.propertyType.Object, this.property.Type);
+		}
+
+		[Test]
+		public void GetAttribute_NoMatches_ReturnDefault()
+		{
+			//var attr1 = new WormColumnNameAttribute("attr1");
+			this.pi.Setup(xx => xx.GetCustomAttributes(typeof(WormColumnNameAttribute), true)).Returns(new object[]{});
+
+			Assert.AreEqual(default(WormColumnNameAttribute), this.property.GetAttribute<WormColumnNameAttribute>());
+		}
+
+		[Test]
+		public void GetAttribute_OneMatch_IsReturned()
+		{
+			var attr1 = new WormColumnNameAttribute("attr1");
+			this.pi.Setup(xx => xx.GetCustomAttributes(typeof(WormColumnNameAttribute), true)).Returns(new object[]{attr1});
+
+			Assert.AreSame(attr1, this.property.GetAttribute<WormColumnNameAttribute>());
+		}
+
+		[Test]
+		public void GetAttribute_MultipleMatches_FirstIsReturned()
+		{
+			var attr1 = new WormColumnNameAttribute("attr1");
+			var attr2 = new WormColumnNameAttribute("attr2");
+			this.pi.Setup(xx => xx.GetCustomAttributes(typeof(WormColumnNameAttribute), true)).Returns(new object[]{attr1,attr2});
+
+			Assert.AreSame(attr1, this.property.GetAttribute<WormColumnNameAttribute>());
 		}
 	}
 }
