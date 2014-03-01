@@ -136,6 +136,59 @@ namespace Wormlibtests.Parsing.Internals
 		}
 
 		[Test]
+		public void Parse_IsPrimaryKeyIsSet_NoAttribute()
+		{
+			this.property.Setup(xx => xx.GetAttribute<WormPrimaryKeyAttribute>()).Returns(default(WormPrimaryKeyAttribute));
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.IsPrimaryKey = It.Is<bool>(actual => actual == false), Times.Once);
+		}
+
+		[Test]
+		public void Parse_IsPrimaryKeyIsSet_WithAttribute()
+		{
+			this.property.Setup(xx => xx.GetAttribute<WormPrimaryKeyAttribute>()).Returns(new WormPrimaryKeyAttribute());
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.IsPrimaryKey = It.Is<bool>(actual => actual == true), Times.Once);
+		}
+
+		[Test]
+		public void Parse_IdGeneratorIsSet_NotPrimaryKey()
+		{
+			this.pocoField.SetupGet(xx => xx.IsPrimaryKey).Returns(false);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.IdGenerator = It.IsAny<WormIdGenerator>(), Times.Never);
+		}
+
+		[Test]
+		public void Parse_IdGeneratorIsSet_IsPrimaryKey_NoAttribute()
+		{
+			this.pocoField.SetupGet(xx => xx.IsPrimaryKey).Returns(true);
+			this.property.Setup(xx => xx.GetAttribute<WormIdGeneratorAttribute>()).Returns(default(WormIdGeneratorAttribute));
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.IdGenerator = It.Is<WormIdGenerator>(actual => WormIdGenerator.AutoIncrement == actual), Times.Once);
+		}
+
+		[Test]
+		public void Parse_IdGeneratorIsSet_IsPrimaryKey_WithAttribute()
+		{
+			var attr = new WormIdGeneratorAttribute(WormIdGenerator.Uuid);
+			this.pocoField.SetupGet(xx => xx.IsPrimaryKey).Returns(true);
+			this.property.Setup(xx => xx.GetAttribute<WormIdGeneratorAttribute>()).Returns(attr);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.IdGenerator = It.Is<WormIdGenerator>(actual => WormIdGenerator.Uuid == actual), Times.Once);
+		}
+
+		[Test]
 		public void Parse_ReturnsInstance()
 		{
 			PocoField actual = this.propToEntity.Parse(this.property.Object);

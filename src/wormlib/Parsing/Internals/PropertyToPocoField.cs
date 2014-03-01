@@ -47,6 +47,24 @@ namespace Worm.Parsing.Internals
 			// is enum
 			result.IsEnum = property.IsEnum;
 
+			// is primary key
+			result.IsPrimaryKey = this.GetValueFromAttributeOrDefault<WormPrimaryKeyAttribute,bool>(
+				property
+				, (xx) => true
+				, false
+			);
+
+			// id generator
+			if (result.IsPrimaryKey)
+			{
+				result.IdGenerator = this.GetValueFromAttributeOrDefault<WormIdGeneratorAttribute,WormIdGenerator>(
+					property
+					, (xx) => xx.IdGenerator
+					, WormIdGenerator.AutoIncrement
+				);
+			}
+
+
 			return result;
 		}
 
