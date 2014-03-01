@@ -36,6 +36,16 @@ namespace Worm.Parsing.Internals
 			return result;
 		}
 
+		#region Get value from attribute or default
+		/// <summary>
+		/// Get the value of a given attribute, or a given default value
+		/// </summary>
+		/// <returns>The value from the attribute (if defined), the default value otherwise</returns>
+		/// <param name="property">The property</param>
+		/// <param name="getter">Function that gets the value from the attribute</param>
+		/// <param name="defaultValue">Value to return if attribute is not defined</param>
+		/// <typeparam name="TAttribute">The type of the attribute</typeparam>
+		/// <typeparam name="TResult">The data type</typeparam>
 		private TResult GetValueFromAttributeOrDefault<TAttribute, TResult>(
 			  WProperty property
 			, Func<TAttribute,TResult> getter
@@ -50,5 +60,6 @@ namespace Worm.Parsing.Internals
 
 			return defaultValue;
 		}
+		#endregion
 	}
 }
