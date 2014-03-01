@@ -72,6 +72,14 @@ namespace Worm.Parsing.Internals.Reflection
 			}
 		}
 
+		public virtual Type Type
+		{
+			get
+			{
+				return this.pi.PropertyType;
+			}
+		}
+
 		#region Get attribute
 		public virtual TAttribute GetAttribute<TAttribute>() where TAttribute : Attribute
 		{

@@ -17,6 +17,7 @@ namespace Wormlibtests.Parsing.Internals
 		private Mock<WormFactory> wormFactory;
 		private Mock<PocoField> pocoField;
 		private Mock<WProperty> property;
+		private Mock<Type> propertyType;
 
 		[SetUp]
 		public void Setup()
@@ -24,8 +25,10 @@ namespace Wormlibtests.Parsing.Internals
 			this.wormFactory = new Mock<WormFactory>();
 			this.pocoField = new Mock<PocoField>();
 			this.property = new Mock<WProperty>(null);
+			this.propertyType = new Mock<Type>();
 
 			this.wormFactory.Setup(xx => xx.GetPocoField()).Returns(this.pocoField.Object);
+			this.property.SetupGet(xx => xx.Type).Returns(this.propertyType.Object);
 
 			this.propToEntity = new PropertyToPocoField(wormFactory.Object);
 		}
@@ -207,6 +210,16 @@ namespace Wormlibtests.Parsing.Internals
 			this.propToEntity.Parse(this.property.Object);
 
 			this.pocoField.VerifySet(xx => xx.StorageType = It.Is<string>(actual => "text".Equals(actual)), Times.Once);
+		}
+
+		[Test]
+		public void Parse_TypeIsSet()
+		{
+			this.propertyType.SetupGet(xx => xx.Name).Returns("TypeOfValue");
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.Type = It.Is<string>(actual => "TypeOfValue".Equals(actual)), Times.Once);
 		}
 
 		[Test]

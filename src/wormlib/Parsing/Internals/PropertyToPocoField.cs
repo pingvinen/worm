@@ -71,6 +71,8 @@ namespace Worm.Parsing.Internals
 				, String.Empty
 			);
 
+			// type
+			result.Type = property.Type.Name;
 
 			return result;
 		}
