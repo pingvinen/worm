@@ -33,6 +33,15 @@ namespace Worm.Parsing.Internals
 
 			this.AddProperties(result, type);
 
+			result.WormClassName = String.Format("Worm{0}", type.Name);
+			result.WormNamespace = String.Format("{0}.Db", result.PocoNamespace);
+			result.WormFilename = String.Format("{0}{1}{2}.cs", 
+				  result.WormNamespace.Replace(".", Path.DirectorySeparatorChar.ToString())
+				, Path.DirectorySeparatorChar
+				, result.WormClassName
+			);
+
+
 			return result;
 		}
 

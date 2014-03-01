@@ -43,8 +43,8 @@ namespace Wormlibtests.Parsing.Internals
 			this.dbFactoryAttr.SetupGet(xx => xx.DbFactoryType).Returns(this.dbFactoryType.Object);
 			this.dbFactoryType.Setup(xx => xx.Implements(It.IsAny<Type>())).Returns(true);
 			this.tableAttr = new Mock<WormTableAttribute>(String.Empty);
-			this.property1 = new Mock<WProperty>(null);
-			this.property2 = new Mock<WProperty>(null);
+			this.property1 = new Mock<WProperty>(null, null);
+			this.property2 = new Mock<WProperty>(null, null);
 			this.pocoField1 = new Mock<PocoField>();
 			this.pocoField2 = new Mock<PocoField>();
 			this.propertyToPocoField = new Mock<PropertyToPocoField>(this.factory.Object);
@@ -55,6 +55,8 @@ namespace Wormlibtests.Parsing.Internals
 			this.entityType.Setup(xx => xx.GetProperties()).Returns(new List<WProperty>());
 
 			this.pocoEntity.SetupGet(xx => xx.Fields).Returns(this.pocoFieldCollection.Object);
+			this.pocoEntity.SetupGet(xx => xx.WormClassName).Returns("WormClassName");
+			this.pocoEntity.SetupGet(xx => xx.WormNamespace).Returns("WormNamespace");
 
 			this.entityType.Setup(xx => xx.GetAttribute<WormDbFactoryAttribute>()).Returns(this.dbFactoryAttr.Object);
 			this.dbFactoryAttr.SetupGet(xx => xx.DbFactoryType).Returns(this.dbFactoryType.Object);
@@ -162,6 +164,38 @@ namespace Wormlibtests.Parsing.Internals
 
 			this.pocoFieldCollection.Verify(xx => xx.Add(this.pocoField1.Object), Times.Never);
 			this.pocoFieldCollection.Verify(xx => xx.Add(this.pocoField2.Object), Times.Once);
+		}
+
+		[Test]
+		public void Parse_wormClassName_isSet()
+		{
+			this.entityType.SetupGet(xx => xx.Name).Returns("Entity");
+
+			this.typeToEntity.Parse(this.entityType.Object);
+
+			this.pocoEntity.VerifySet(xx => xx.WormClassName = It.Is<String>(actual => "WormEntity".Equals(actual)), Times.Once);
+		}
+
+		[Test]
+		public void Parse_wormNamespace_isSet()
+		{
+			this.pocoEntity.SetupGet(xx => xx.PocoNamespace).Returns("Name.Space");
+
+			this.typeToEntity.Parse(this.entityType.Object);
+
+			this.pocoEntity.VerifySet(xx => xx.WormNamespace = It.Is<String>(actual => "Name.Space.Db".Equals(actual)), Times.Once);
+		}
+
+		[Test]
+		public void Parse_wormFilename_isSet()
+		{
+			this.pocoEntity.SetupGet(xx => xx.WormNamespace).Returns("Name.Space.Db");
+			this.pocoEntity.SetupGet(xx => xx.WormClassName).Returns("WormEntity");
+
+			this.typeToEntity.Parse(this.entityType.Object);
+
+			string expected = String.Format("Name{0}Space{0}Db{0}WormEntity.cs", Path.DirectorySeparatorChar);
+			this.pocoEntity.VerifySet(xx => xx.WormFilename = It.Is<String>(actual => expected.Equals(actual)), Times.Once);
 		}
 	}
 }
