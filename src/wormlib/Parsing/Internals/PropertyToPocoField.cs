@@ -38,6 +38,9 @@ namespace Worm.Parsing.Internals
 			// has getter
 			result.HasGetter = property.HasGetter;
 
+			// has setter
+			result.HasSetter = property.HasSetter;
+
 			return result;
 		}
 

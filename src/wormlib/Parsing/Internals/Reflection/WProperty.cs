@@ -30,6 +30,14 @@ namespace Worm.Parsing.Internals.Reflection
 			}
 		}
 
+		public virtual bool HasSetter
+		{
+			get
+			{
+				return this.pi.GetSetMethod() != null;
+			}
+		}
+
 		#region Get attribute
 		public virtual TAttribute GetAttribute<TAttribute>() where TAttribute : Attribute
 		{
