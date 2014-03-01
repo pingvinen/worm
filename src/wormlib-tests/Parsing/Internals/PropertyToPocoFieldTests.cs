@@ -24,7 +24,7 @@ namespace Wormlibtests.Parsing.Internals
 		{
 			this.wormFactory = new Mock<WormFactory>();
 			this.pocoField = new Mock<PocoField>();
-			this.property = new Mock<WProperty>(null);
+			this.property = new Mock<WProperty>(null, null);
 			this.propertyType = new Mock<Type>();
 
 			this.wormFactory.Setup(xx => xx.GetPocoField()).Returns(this.pocoField.Object);
