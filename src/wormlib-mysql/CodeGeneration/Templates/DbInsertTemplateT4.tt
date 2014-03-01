@@ -12,8 +12,7 @@ private <#= Model.PocoClassName #> DbInsert(IWormDbConnection db)
 	";
 
 	<# foreach (PocoField f in Model.Fields.GetInsertFields()) { #>
-
-	query.AddParam("@<#= f.Name #>", base.<#= f.Name #>);
+query.AddParam("@<#= f.Name #>", base.<#= f.Name #>);
 	<# } #>
 
 	if (query.ExecuteNonQuery() != 1)
@@ -23,6 +22,10 @@ private <#= Model.PocoClassName #> DbInsert(IWormDbConnection db)
 
 	query = db.CreateQuery("select last_insert_id()");
 	base.<#= idField.Name #> = <#= idField.Type #>.Parse(query.ExecuteScalar<ulong>().ToString());
+
+	<# foreach (PocoField f in Model.Fields.GetValueTrackedFields()) { #>
+this.hasChanged_<#= f.Name #> = false;
+	<# } #>
 
 	return this;
 }
