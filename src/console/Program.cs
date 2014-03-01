@@ -2,6 +2,7 @@ using System;
 using Worm.Parsing;
 using Worm.CodeGeneration;
 using Worm.CodeGeneration.Internals;
+using Worm;
 
 namespace console
 {
@@ -40,6 +41,13 @@ namespace console
 				}
 
 				Console.WriteLine();
+			}
+
+			var writer = new DbClassWriter(new WormFactory());
+			foreach (PocoEntity entity in model.Entities)
+			{
+				CodeFile cf = writer.Generate(entity);
+				System.IO.File.WriteAllText("/tmp/console_" + System.IO.Path.GetFileName(cf.Filename), cf.Content);
 			}
 		}
 	}
