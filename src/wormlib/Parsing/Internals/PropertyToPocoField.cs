@@ -20,18 +20,23 @@ namespace Worm.Parsing.Internals
 
 			result.Name = property.Name;
 
+			// allow null
 			var allowNullAttribute = property.GetAttribute<WormAllowNullAttribute>();
 			if (allowNullAttribute != default(WormAllowNullAttribute))
 			{
 				result.AllowNull = allowNullAttribute.Value;
 			}
 
+			// column name
 			string columnName = this.GetValueFromAttributeOrDefault<WormColumnNameAttribute,string>(
 				  property
 				, (xx) => xx.Value
 				, property.Name
 			);
 			result.ColumnName = columnName;
+
+			// has getter
+			result.HasGetter = property.HasGetter;
 
 			return result;
 		}

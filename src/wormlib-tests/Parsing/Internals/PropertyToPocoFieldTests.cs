@@ -96,6 +96,16 @@ namespace Wormlibtests.Parsing.Internals
 		}
 
 		[Test]
+		public void Parse_HasGetterIsSet()
+		{
+			this.property.SetupGet(xx => xx.HasGetter).Returns(true);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.HasGetter = It.Is<bool>(actual => actual == true), Times.Once);
+		}
+
+		[Test]
 		public void Parse_ReturnsInstance()
 		{
 			PocoField actual = this.propToEntity.Parse(this.property.Object);

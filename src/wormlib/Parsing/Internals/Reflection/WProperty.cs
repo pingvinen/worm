@@ -22,6 +22,14 @@ namespace Worm.Parsing.Internals.Reflection
 			}
 		}
 
+		public virtual bool HasGetter
+		{
+			get
+			{
+				return this.pi.GetGetMethod() != null;
+			}
+		}
+
 		#region Get attribute
 		public virtual TAttribute GetAttribute<TAttribute>() where TAttribute : Attribute
 		{
