@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 
 namespace Worm.MySql.CodeGeneration.Templates {
+    using Worm.CodeGeneration;
     using Worm.CodeGeneration.Internals;
     using System;
     
@@ -18,181 +19,181 @@ namespace Worm.MySql.CodeGeneration.Templates {
         public virtual string TransformText() {
             this.GenerationEnvironment = null;
             
-            #line 4 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 4 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
  var idField = Model.Fields.GetPrimaryKeyField(); 
             
             #line default
             #line hidden
             
-            #line 5 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 5 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("private ");
             
             #line default
             #line hidden
             
-            #line 5 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 5 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.PocoClassName ));
             
             #line default
             #line hidden
             
-            #line 5 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 5 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(" DbUpdate(IWormDbConnection db)\n{\n\tvar query = db.CreateQuery();\n\tvar columns = new List<string>();\n\n\t");
             
             #line default
             #line hidden
             
-            #line 10 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 10 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
  foreach (PocoField f in Model.Fields.GetInsertFields()) { 
             
             #line default
             #line hidden
             
-            #line 11 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 11 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("\n\tif (this.hasChanged_");
             
             #line default
             #line hidden
             
-            #line 12 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 12 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( f.Name ));
             
             #line default
             #line hidden
             
-            #line 12 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 12 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(")\n\t{\n\t\tcolumns.Add(\"`");
             
             #line default
             #line hidden
             
-            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( f.ColumnName ));
             
             #line default
             #line hidden
             
-            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("`=@");
             
             #line default
             #line hidden
             
-            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( f.Name ));
             
             #line default
             #line hidden
             
-            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 14 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("\");\n\t\tquery.AddParam(\"@");
             
             #line default
             #line hidden
             
-            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( f.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("\", base.");
             
             #line default
             #line hidden
             
-            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( f.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 15 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(");\n\t}\n\t");
             
             #line default
             #line hidden
             
-            #line 17 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 17 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 18 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 18 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("\n\tif (columns.Count == 0)\n\t{\n\t\t// nothing has changed... no reason to bother the server\n\t\treturn this;\n\t}\n\n\tquery.Sql = String.Format(\"update `");
             
             #line default
             #line hidden
             
-            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.TableName ));
             
             #line default
             #line hidden
             
-            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("` set {0} where `");
             
             #line default
             #line hidden
             
-            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( idField.ColumnName ));
             
             #line default
             #line hidden
             
-            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("`=@id limit 1\", String.Join(\", \", columns));\n\tquery.AddParam(\"@id\", base.");
             
             #line default
             #line hidden
             
-            #line 26 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 26 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( idField.Name ));
             
             #line default
             #line hidden
             
-            #line 26 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
-            this.Write(");\n\n\tquery.ExecuteNonQuery();\n\t");
+            #line 26 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
+            this.Write(");\n\n\tquery.ExecuteNonQuery();\n\n\t");
             
             #line default
             #line hidden
             
-            #line 29 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
- foreach (PocoField f in Model.Fields.GetPublicFields()) { 
+            #line 30 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
+ foreach (PocoField f in Model.Fields.GetValueTrackedFields()) { 
             
             #line default
             #line hidden
             
-            #line 30 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
-            this.Write("\n\tthis.hasChanged_");
+            #line 31 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
+            this.Write("this.hasChanged_");
             
             #line default
             #line hidden
             
-            #line 31 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 31 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( f.Name ));
             
             #line default
             #line hidden
             
-            #line 31 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 31 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write(" = false;\n\t");
             
             #line default
             #line hidden
             
-            #line 32 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 32 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 33 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/Writing/Templates/DbUpdateTemplateT4.tt"
+            #line 33 "/home/pingvinen/gitclones/me/worm/src/wormlib-mysql/CodeGeneration/Templates/DbUpdateTemplateT4.tt"
             this.Write("\n\treturn this;\n}\t\t");
             
             #line default

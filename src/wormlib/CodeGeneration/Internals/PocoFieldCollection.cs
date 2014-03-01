@@ -42,5 +42,16 @@ namespace Worm.CodeGeneration.Internals
 				select yy
 			).AsEnumerable();
 		}
+
+		public virtual IEnumerable<PocoField> GetValueTrackedFields()
+		{
+			return (
+				from yy in base.Items
+				where 
+				yy.HasSetter
+				&& !yy.IsPrimaryKey
+				select yy
+			).AsEnumerable();
+		}
 	}
 }

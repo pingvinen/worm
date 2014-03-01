@@ -26,9 +26,9 @@ private <#= Model.PocoClassName #> DbUpdate(IWormDbConnection db)
 	query.AddParam("@id", base.<#= idField.Name #>);
 
 	query.ExecuteNonQuery();
-	<# foreach (PocoField f in Model.Fields.GetPublicFields()) { #>
 
-	this.hasChanged_<#= f.Name #> = false;
+	<# foreach (PocoField f in Model.Fields.GetValueTrackedFields()) { #>
+this.hasChanged_<#= f.Name #> = false;
 	<# } #>
 
 	return this;
