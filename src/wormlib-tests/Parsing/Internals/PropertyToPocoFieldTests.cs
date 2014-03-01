@@ -41,6 +41,16 @@ namespace Wormlibtests.Parsing.Internals
 		}
 
 		[Test]
+		public void Parse_AccessModifierIsSet()
+		{
+			this.property.SetupGet(xx => xx.AccessModifier).Returns(AccessModifier.Protected);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.AccessModifier = It.Is<AccessModifier>(actual => AccessModifier.Protected == actual), Times.Once);
+		}
+
+		[Test]
 		public void Parse_AllowNullIsSet_HasAttribute_ValueIsFalse()
 		{
 			var attr = new WormAllowNullAttribute(false);
@@ -113,6 +123,16 @@ namespace Wormlibtests.Parsing.Internals
 			this.propToEntity.Parse(this.property.Object);
 
 			this.pocoField.VerifySet(xx => xx.HasSetter = It.Is<bool>(actual => actual == true), Times.Once);
+		}
+
+		[Test]
+		public void Parse_IsEnumIsSet()
+		{
+			this.property.SetupGet(xx => xx.IsEnum).Returns(true);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.IsEnum = It.Is<bool>(actual => actual == true), Times.Once);
 		}
 
 		[Test]

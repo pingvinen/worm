@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using Worm.CodeGeneration.Internals;
 
 namespace Worm.Parsing.Internals.Reflection
 {
@@ -35,6 +36,39 @@ namespace Worm.Parsing.Internals.Reflection
 			get
 			{
 				return this.pi.GetSetMethod() != null;
+			}
+		}
+
+		public virtual bool IsEnum
+		{
+			get
+			{
+				return this.pi.PropertyType.IsEnum;
+			}
+		}
+
+		public virtual AccessModifier AccessModifier
+		{
+			get
+			{
+				MethodInfo mi = null;
+
+				if (this.pi.CanWrite)
+				{
+					mi = this.pi.GetSetMethod();
+				}
+				else if (this.pi.CanRead)
+				{
+					mi = this.pi.GetGetMethod();
+				}
+
+
+				if (mi == null)
+				{
+					return AccessModifier.Private;
+				}
+
+				return (new AccessModifierMapper()).Map(mi);
 			}
 		}
 

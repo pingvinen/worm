@@ -20,6 +20,9 @@ namespace Worm.Parsing.Internals
 
 			result.Name = property.Name;
 
+			// access modifier
+			result.AccessModifier = property.AccessModifier;
+
 			// allow null
 			var allowNullAttribute = property.GetAttribute<WormAllowNullAttribute>();
 			if (allowNullAttribute != default(WormAllowNullAttribute))
@@ -40,6 +43,9 @@ namespace Worm.Parsing.Internals
 
 			// has setter
 			result.HasSetter = property.HasSetter;
+
+			// is enum
+			result.IsEnum = property.IsEnum;
 
 			return result;
 		}
