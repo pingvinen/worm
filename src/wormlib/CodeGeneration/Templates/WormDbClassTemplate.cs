@@ -157,19 +157,19 @@ namespace Worm.CodeGeneration.Templates {
             #line hidden
             
             #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib/CodeGeneration/Templates/WormDbClassTemplate.tt"
-            this.Write(" = value != base.");
+            this.Write(" = ");
             
             #line default
             #line hidden
             
             #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib/CodeGeneration/Templates/WormDbClassTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( f.Name ));
+            this.Write(this.ToStringHelper.ToStringWithCulture( GetTrackValueComparisonForField(f) ));
             
             #line default
             #line hidden
             
             #line 25 "/home/pingvinen/gitclones/me/worm/src/wormlib/CodeGeneration/Templates/WormDbClassTemplate.tt"
-            this.Write(";\n\t\t\t\tbase.");
+            this.Write("\n\t\t\t\tbase.");
             
             #line default
             #line hidden

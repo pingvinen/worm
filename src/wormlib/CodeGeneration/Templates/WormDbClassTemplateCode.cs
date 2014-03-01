@@ -53,5 +53,19 @@ namespace Worm.CodeGeneration.Templates
 			return true;
 		}
 		#endregion
+
+		#region Track value comparison for field
+		public virtual string GetTrackValueComparisonForField(PocoField field)
+		{
+			string typeLower = field.Type.ToLowerInvariant();
+
+			if (typeLower.Equals("string"))
+			{
+				return String.Format("!value.Equals(base.{0});", field.Name);
+			}
+
+			return String.Format("value != base.{0};", field.Name);
+		}
+		#endregion
 	}
 }

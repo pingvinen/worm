@@ -22,7 +22,7 @@ namespace <#= Model.WormNamespace #>
 		{
 			set
 			{
-				this.hasChanged_<#= f.Name #> = value != base.<#= f.Name #>;
+				this.hasChanged_<#= f.Name #> = <#= GetTrackValueComparisonForField(f) #>
 				base.<#= f.Name #> = value;
 			}
 		}
