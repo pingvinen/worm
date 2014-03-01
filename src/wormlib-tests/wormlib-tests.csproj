@@ -49,6 +49,7 @@
     <Folder Include="CodeGeneration\" />
     <Folder Include="Parsing\" />
     <Folder Include="Parsing\Internals\" />
+    <Folder Include="Parsing\Internals\Reflection\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGeneration\DbClassWriterTests.cs" />
@@ -56,5 +57,6 @@
     <Compile Include="Parsing\Internals\UniTestWormDbFactory.cs" />
     <Compile Include="Parsing\Internals\PocoFieldCollectionTests.cs" />
     <Compile Include="Parsing\Internals\PropertyToPocoFieldTests.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WPropertyTests.cs" />
   </ItemGroup>
 </Project>
