@@ -14,14 +14,18 @@ namespace Wormlibtests.Parsing.Internals.Reflection
 
 		private Mock<PropertyInfo> pi;
 		private Mock<Type> propertyType;
+		private Mock<AccessModifierMapper> accessMapper;
+		private Mock<MethodInfo> methodInfo;
 
 		[SetUp]
 		public void Setup()
 		{
 			this.pi = new Mock<PropertyInfo>();
 			this.propertyType = new Mock<Type>();
+			this.accessMapper = new Mock<AccessModifierMapper>();
+			this.methodInfo = new Mock<MethodInfo>();
 
-			this.property = new WProperty(this.pi.Object);
+			this.property = new WProperty(this.pi.Object, this.accessMapper.Object);
 		}
 
 		[Test]
@@ -55,6 +59,36 @@ namespace Wormlibtests.Parsing.Internals.Reflection
 			this.propertyType.SetupGet(xx => xx.IsEnum).Returns(true);
 
 			Assert.AreEqual(true, this.property.IsEnum);
+		}
+
+		[Test]
+		public void AccessModifier_CanWrite()
+		{
+			this.pi.SetupGet(xx => xx.CanWrite).Returns(true);
+			this.pi.Setup(xx => xx.GetSetMethod(true)).Returns(this.methodInfo.Object);
+			this.accessMapper.Setup(xx => xx.Map(this.methodInfo.Object)).Returns(AccessModifier.Protected);
+
+			Assert.AreEqual(AccessModifier.Protected, this.property.AccessModifier);
+		}
+
+		[Test]
+		public void AccessModifier_CanRead()
+		{
+			this.pi.SetupGet(xx => xx.CanWrite).Returns(false);
+			this.pi.SetupGet(xx => xx.CanRead).Returns(true);
+			this.pi.Setup(xx => xx.GetGetMethod(true)).Returns(this.methodInfo.Object);
+			this.accessMapper.Setup(xx => xx.Map(this.methodInfo.Object)).Returns(AccessModifier.Protected);
+
+			Assert.AreEqual(AccessModifier.Protected, this.property.AccessModifier);
+		}
+
+		[Test]
+		public void AccessModifier_NeitherReadNorWrite()
+		{
+			this.pi.SetupGet(xx => xx.CanWrite).Returns(false);
+			this.pi.SetupGet(xx => xx.CanRead).Returns(false);
+
+			Assert.AreEqual(AccessModifier.Private, this.property.AccessModifier);
 		}
 
 		[Test]

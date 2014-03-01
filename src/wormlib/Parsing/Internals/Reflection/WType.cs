@@ -94,7 +94,7 @@ namespace Worm.Parsing.Internals.Reflection
 		{
 			foreach (PropertyInfo pi in this.type.GetProperties())
 			{
-				yield return new WProperty(pi);
+				yield return new WProperty(pi, new AccessModifierMapper());
 			}
 		}
 		#endregion

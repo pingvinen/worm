@@ -1,7 +1,5 @@
 using System;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
 using Worm.CodeGeneration.Internals;
 
 namespace Worm.Parsing.Internals.Reflection
@@ -10,8 +8,11 @@ namespace Worm.Parsing.Internals.Reflection
 	{
 		protected PropertyInfo pi;
 
-		public WProperty(PropertyInfo pi)
+		protected AccessModifierMapper accessMapper;
+
+		public WProperty(PropertyInfo pi, AccessModifierMapper accessMapper)
 		{
+			this.accessMapper = accessMapper;
 			this.pi = pi;
 		}
 
@@ -55,11 +56,11 @@ namespace Worm.Parsing.Internals.Reflection
 
 				if (this.pi.CanWrite)
 				{
-					mi = this.pi.GetSetMethod();
+					mi = this.pi.GetSetMethod(true);
 				}
 				else if (this.pi.CanRead)
 				{
-					mi = this.pi.GetGetMethod();
+					mi = this.pi.GetGetMethod(true);
 				}
 
 
@@ -68,7 +69,7 @@ namespace Worm.Parsing.Internals.Reflection
 					return AccessModifier.Private;
 				}
 
-				return (new AccessModifierMapper()).Map(mi);
+				return this.accessMapper.Map(mi);
 			}
 		}
 
