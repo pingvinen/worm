@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}</ProjectGuid>
+    <ProjectGuid>{990780D2-34F6-418A-BAB3-96B1F51B8A66}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Wormlibtests</RootNamespace>
-    <AssemblyName>wormlib-tests</AssemblyName>
+    <RootNamespace>consumer</RootNamespace>
+    <AssemblyName>consumer</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,13 +30,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Moq">
-      <HintPath>..\..\libs\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\libs\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="NonEntity.cs" />
+    <Compile Include="Role.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -44,19 +43,9 @@
       <Project>{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}</Project>
       <Name>wormlib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CodeGeneration\" />
-    <Folder Include="Parsing\" />
-    <Folder Include="Parsing\Internals\" />
-    <Folder Include="Parsing\Internals\Reflection\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CodeGeneration\DbClassWriterTests.cs" />
-    <Compile Include="Parsing\Internals\TypeToEntityTests.cs" />
-    <Compile Include="Parsing\Internals\UniTestWormDbFactory.cs" />
-    <Compile Include="Parsing\Internals\PocoFieldCollectionTests.cs" />
-    <Compile Include="Parsing\Internals\PropertyToPocoFieldTests.cs" />
-    <Compile Include="Parsing\Internals\Reflection\WPropertyTests.cs" />
+    <ProjectReference Include="..\wormlib-mysql\wormlib-mysql.csproj">
+      <Project>{AADB5F94-1096-4F5B-B151-85F9027503B1}</Project>
+      <Name>wormlib-mysql</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

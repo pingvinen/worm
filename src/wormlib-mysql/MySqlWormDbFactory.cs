@@ -7,7 +7,11 @@ namespace Worm.MySql
 	public class MySqlWormDbFactory : IWormDbFactory
 	{
 		protected string connectionString;
-		
+	
+		public MySqlWormDbFactory() : this(String.Empty)
+		{
+		}
+			
 		public MySqlWormDbFactory(string connectionString)
 		{
 			this.connectionString = connectionString;

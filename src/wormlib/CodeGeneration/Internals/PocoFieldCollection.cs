@@ -9,10 +9,20 @@ namespace Worm.CodeGeneration.Internals
 	{
 		public PocoField GetPrimaryKeyField()
 		{
-			return base.Items.Where(xx => xx.IsPrimaryKey).FirstOrDefault();
+			return base.Items.FirstOrDefault(xx => xx.IsPrimaryKey);
 		}
 
-		public IEnumerable<PocoField> GetPublicFields()
+		public virtual new void Add(PocoField item)
+		{
+			//
+			// This override is only here to make
+			// it possible to mock it in tests
+			//
+
+			base.Add(item);
+		}
+
+		public virtual IEnumerable<PocoField> GetPublicFields()
 		{
 			return (
 				from yy in base.Items
@@ -24,7 +34,7 @@ namespace Worm.CodeGeneration.Internals
 			).AsEnumerable();
 		}
 
-		public IEnumerable<PocoField> GetInsertFields()
+		public virtual IEnumerable<PocoField> GetInsertFields()
 		{
 			return (
 				from yy in base.Items

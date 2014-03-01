@@ -33,6 +33,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +76,18 @@
     <Compile Include="CodeGeneration\Internals\PocoField.cs" />
     <Compile Include="CodeGeneration\Internals\PocoFieldCollection.cs" />
     <Compile Include="CodeGeneration\Internals\IWormTemplateProvider.cs" />
+    <Compile Include="Parsing\Internals\ICompiler.cs" />
+    <Compile Include="Parsing\Internals\XbuildCompiler.cs" />
+    <Compile Include="Parsing\Internals\MicrosoftBuildCompiler.cs" />
+    <Compile Include="Parsing\Parser.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WAssembly.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WType.cs" />
+    <Compile Include="CodeGeneration\PocoModel.cs" />
+    <Compile Include="Parsing\Internals\TypeToEntity.cs" />
+    <Compile Include="Parsing\Internals\Reflection\WProperty.cs" />
+    <Compile Include="Parsing\Internals\PropertyToPocoField.cs" />
+    <Compile Include="DataAnnotations\WormAllowNullAttribute.cs" />
+    <Compile Include="Parsing\Internals\Reflection\AccessModifierMapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -80,6 +95,9 @@
     <Folder Include="CodeGeneration\" />
     <Folder Include="CodeGeneration\Templates\" />
     <Folder Include="CodeGeneration\Internals\" />
+    <Folder Include="Parsing\" />
+    <Folder Include="Parsing\Internals\" />
+    <Folder Include="Parsing\Internals\Reflection\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

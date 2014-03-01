@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Wormlibtests</RootNamespace>
-    <AssemblyName>wormlib-tests</AssemblyName>
+    <ProjectGuid>{63E2778A-07CC-463E-A2B3-D1BCE29E7898}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>console</RootNamespace>
+    <AssemblyName>console</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -18,7 +18,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -26,17 +26,14 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Moq">
-      <HintPath>..\..\libs\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\libs\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -44,19 +41,5 @@
       <Project>{96E5E399-6AF6-4F14-A6BC-7B5AC1F2110E}</Project>
       <Name>wormlib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CodeGeneration\" />
-    <Folder Include="Parsing\" />
-    <Folder Include="Parsing\Internals\" />
-    <Folder Include="Parsing\Internals\Reflection\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CodeGeneration\DbClassWriterTests.cs" />
-    <Compile Include="Parsing\Internals\TypeToEntityTests.cs" />
-    <Compile Include="Parsing\Internals\UniTestWormDbFactory.cs" />
-    <Compile Include="Parsing\Internals\PocoFieldCollectionTests.cs" />
-    <Compile Include="Parsing\Internals\PropertyToPocoFieldTests.cs" />
-    <Compile Include="Parsing\Internals\Reflection\WPropertyTests.cs" />
   </ItemGroup>
 </Project>
