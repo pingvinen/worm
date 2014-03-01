@@ -64,6 +64,13 @@ namespace Worm.Parsing.Internals
 				);
 			}
 
+			// storage type
+			result.StorageType = this.GetValueFromAttributeOrDefault<WormStorageTypeAttribute,string>(
+				property
+				, (xx) => xx.Value
+				, String.Empty
+			);
+
 
 			return result;
 		}

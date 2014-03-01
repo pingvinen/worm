@@ -6,7 +6,10 @@ namespace Worm.DataAnnotations
 	{
 		public WormStorageTypeAttribute (string dbType)
 		{
+			this.Value = dbType;
 		}
+
+		public string Value { get; set; }
 	}
 }
 

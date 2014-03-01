@@ -189,6 +189,27 @@ namespace Wormlibtests.Parsing.Internals
 		}
 
 		[Test]
+		public void Parse_StorageTypeIsSet_NoAttribute()
+		{
+			this.property.Setup(xx => xx.GetAttribute<WormStorageTypeAttribute>()).Returns(default(WormStorageTypeAttribute));
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.StorageType = It.Is<string>(actual => String.Empty.Equals(actual)), Times.Once);
+		}
+
+		[Test]
+		public void Parse_StorageTypeIsSet_WithAttribute()
+		{
+			var attr = new WormStorageTypeAttribute("text");
+			this.property.Setup(xx => xx.GetAttribute<WormStorageTypeAttribute>()).Returns(attr);
+
+			this.propToEntity.Parse(this.property.Object);
+
+			this.pocoField.VerifySet(xx => xx.StorageType = It.Is<string>(actual => "text".Equals(actual)), Times.Once);
+		}
+
+		[Test]
 		public void Parse_ReturnsInstance()
 		{
 			PocoField actual = this.propToEntity.Parse(this.property.Object);
