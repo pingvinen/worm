@@ -22,4 +22,3 @@ namespace Worm.MySql.CodeGeneration
 		}
 	}
 }
-

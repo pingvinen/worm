@@ -1,12 +1,12 @@
 using System;
 using NUnit.Framework;
 using Worm;
-using Worm.MySql;
+using Worm.Postgres;
 using Worm.DataAnnotations;
 using Worm.CodeGeneration;
 using Worm.CodeGeneration.Internals;
 
-namespace Functionaltests.MySql.CodeGeneration
+namespace Functionaltests.Postgres.CodeGeneration
 {
 	[TestFixture]
 	public class WormDbClassGeneratorTests
@@ -16,7 +16,7 @@ namespace Functionaltests.MySql.CodeGeneration
 		{
 			var dbClassWriter = new DbClassWriter(new WormFactory());
 			var entity = new PocoEntity() {
-				DbFactory = new MySqlWormDbFactory(String.Empty),
+				DbFactory = new PostgresWormDbFactory(String.Empty),
 				PocoClassName = "TestEntity",
 				PocoFilename = "TestEntity.cs",
 				PocoNamespace = "Test.Entities",
@@ -60,7 +60,7 @@ namespace Functionaltests.MySql.CodeGeneration
 
 			var result = dbClassWriter.Generate(entity);
 
-			System.IO.File.WriteAllText("/tmp/mysql_" + result.Filename, result.Content);
+			System.IO.File.WriteAllText("/tmp/postgres_" + result.Filename, result.Content);
 
 			Assert.AreEqual("WormTestEntity.cs", result.Filename);
 		}

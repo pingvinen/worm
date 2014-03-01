@@ -8,6 +8,10 @@ namespace Worm.Postgres
 	{
 		protected string connectionString;
 
+		public PostgresWormDbFactory() : this(String.Empty)
+		{
+		}
+
 		public PostgresWormDbFactory(string connectionString)
 		{
 			this.connectionString = connectionString;

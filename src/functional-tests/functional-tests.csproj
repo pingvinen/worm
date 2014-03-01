@@ -52,8 +52,11 @@
   <ItemGroup>
     <Folder Include="MySql\" />
     <Folder Include="MySql\CodeGeneration\" />
+    <Folder Include="Postgres\" />
+    <Folder Include="Postgres\CodeGeneration\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MySql\CodeGeneration\WormDbClassGeneratorTests.cs" />
+    <Compile Include="Postgres\CodeGeneration\WormDbClassGeneratorTests.cs" />
   </ItemGroup>
 </Project>

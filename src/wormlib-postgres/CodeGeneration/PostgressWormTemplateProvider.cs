@@ -8,18 +8,17 @@ namespace Worm.Postgres.CodeGeneration
 	{
 		public virtual DbGetByIdOrDefaultTemplateBase GetDbGetByIdOrDefaultTemplate()
 		{
-			throw new NotImplementedException();
+			return new DbBuildQueryGetIdTemplate();
 		}
 
 		public virtual DbInsertTemplateBase GetDbInsertTemplate()
 		{
-			throw new NotImplementedException();
+			return new DbInsertTemplate();
 		}
 
 		public virtual DbUpdateTemplateBase GetDbUpdateTemplate()
 		{
-			throw new NotImplementedException();
+			return new DbUpdateTemplate();
 		}
 	}
 }
-
