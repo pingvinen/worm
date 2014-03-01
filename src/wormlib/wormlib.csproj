@@ -86,6 +86,7 @@
     <Compile Include="Parsing\Internals\TypeToEntity.cs" />
     <Compile Include="Parsing\Internals\Reflection\WProperty.cs" />
     <Compile Include="Parsing\Internals\PropertyToPocoField.cs" />
+    <Compile Include="DataAnnotations\WormAllowNullAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,6 +1,7 @@
 using System;
 using Worm.CodeGeneration.Internals;
 using Worm.Parsing.Internals.Reflection;
+using Worm.DataAnnotations;
 
 namespace Worm.Parsing.Internals
 {
@@ -18,6 +19,12 @@ namespace Worm.Parsing.Internals
 			PocoField result = this.factory.GetPocoField();
 
 			result.Name = property.Name;
+
+			var allowNullAttribute = property.GetAttribute<WormAllowNullAttribute>();
+			if (allowNullAttribute != default(WormAllowNullAttribute))
+			{
+				result.AllowNull = allowNullAttribute.Value;
+			}
 
 			return result;
 		}
