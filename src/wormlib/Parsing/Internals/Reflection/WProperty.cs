@@ -27,7 +27,7 @@ namespace Worm.Parsing.Internals.Reflection
 		{
 			get
 			{
-				return this.pi.GetGetMethod() != null;
+				return this.pi.CanRead;
 			}
 		}
 
@@ -35,7 +35,7 @@ namespace Worm.Parsing.Internals.Reflection
 		{
 			get
 			{
-				return this.pi.GetSetMethod() != null;
+				return this.pi.CanWrite;
 			}
 		}
 
