@@ -63,11 +63,6 @@ namespace Worm.CodeGeneration.Internals
 		public virtual WormIdGenerator IdGenerator { get; set; }
 
 		/// <summary>
-		/// Gets or sets whether this field needs to be persisted.
-		/// </summary>
-		public virtual bool DoPersist { get; set; }
-
-		/// <summary>
 		/// Gets or sets whether this field allows <c>Null</c> as a value.
 		/// </summary>
 		public virtual bool AllowNull { get; set; }

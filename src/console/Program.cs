@@ -28,7 +28,6 @@ namespace console
 					Console.WriteLine("AccessModifier: {0}", field.AccessModifier);
 					Console.WriteLine("AllowNull: {0}", field.AllowNull);
 					Console.WriteLine("ColumnName: {0}", field.ColumnName);
-					Console.WriteLine("DoPersist: {0}", field.DoPersist);
 					Console.WriteLine("HasGetter: {0}", field.HasGetter);
 					Console.WriteLine("HasSetter: {0}", field.HasSetter);
 					Console.WriteLine("IdGenerator: {0}", field.IdGenerator);
