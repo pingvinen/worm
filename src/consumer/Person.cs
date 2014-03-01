@@ -18,6 +18,10 @@ namespace consumer
 
 		[WormIgnore]
 		public int RuntimeState { get; set; }
+
+		public Role Role { get; set; }
+
+		protected decimal InternalState { get; set; }
 	}
 }
 

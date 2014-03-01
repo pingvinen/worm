@@ -92,9 +92,13 @@ namespace Worm.Parsing.Internals.Reflection
 		#region Get properties
 		public virtual IEnumerable<WProperty> GetProperties()
 		{
-			foreach (PropertyInfo pi in this.type.GetProperties())
+			foreach (PropertyInfo pi in this.type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
 			{
-				yield return new WProperty(pi, new AccessModifierMapper());
+				// only yield non-private properties
+				if ((pi.CanRead && !pi.GetGetMethod(true).IsPrivate) || (pi.CanWrite && !pi.GetSetMethod(true).IsPrivate))
+				{
+					yield return new WProperty(pi, new AccessModifierMapper());
+				}
 			}
 		}
 		#endregion
