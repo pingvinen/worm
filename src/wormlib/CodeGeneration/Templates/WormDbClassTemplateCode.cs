@@ -25,7 +25,7 @@ namespace Worm.CodeGeneration.Templates
 
 			else if (field.IsEnum)
 			{
-				return String.Format("this.{0} = ({1})Enum.Parse(typeof({1}), dr.GetOrDefault<string>(\"{2}\", \"--\", true);", field.Name, field.Type, field.ColumnName);
+				return String.Format("this.{0} = ({1})Enum.Parse(typeof({1}), dr.GetOrDefault<string>(\"{2}\", \"--\"), true);", field.Name, field.Type, field.ColumnName);
 			}
 
 			return String.Format("this.{0} = dr.GetOrDefault<{1}>(\"{2}\", {3});", field.Name, field.Type, field.ColumnName, def);

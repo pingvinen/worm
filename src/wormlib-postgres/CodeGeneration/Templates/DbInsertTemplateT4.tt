@@ -5,23 +5,17 @@
 private <#= Model.PocoClassName #> DbInsert(IWormDbConnection db)
 {
 	var query = db.CreateQuery();
-	query.Sql = @"insert into `<#= Model.TableName #>` set
-		<# foreach (PocoField f in Model.Fields.GetInsertFields()) { #>
-			`<#= f.ColumnName #>` = :<#= f.Name #>
-		<# } #>
+	query.Sql = @"insert into ""<#= Model.TableName #>""
+		(<#= String.Join(",", GetColumnList()) #>)
+		values
+		(<#= String.Join(",", GetInsertValues()) #>)
 	";
 
 	<# foreach (PocoField f in Model.Fields.GetInsertFields()) { #>
 query.AddParam(":<#= f.Name #>", base.<#= f.Name #>);
 	<# } #>
 
-	if (query.ExecuteNonQuery() != 1)
-	{
-		throw new WormException("No rows were inserted");
-	}
-
-	query = db.CreateQuery("select last_insert_id()");
-	base.<#= idField.Name #> = <#= idField.Type #>.Parse(query.ExecuteScalar<ulong>().ToString());
+	base.<#= idField.Name #> = query.ExecuteScalar<int>();
 
 	<# foreach (PocoField f in Model.Fields.GetValueTrackedFields()) { #>
 this.hasChanged_<#= f.Name #> = false;
