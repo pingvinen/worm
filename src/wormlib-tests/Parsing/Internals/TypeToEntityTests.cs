@@ -194,7 +194,19 @@ namespace Wormlibtests.Parsing.Internals
 
 			this.typeToEntity.Parse(this.entityType.Object);
 
-			string expected = String.Format("Name{0}Space{0}Db{0}WormEntity.cs", Path.DirectorySeparatorChar);
+			string expected = String.Format("Space{0}Db{0}WormEntity.cs", Path.DirectorySeparatorChar);
+			this.pocoEntity.VerifySet(xx => xx.WormFilename = It.Is<String>(actual => expected.Equals(actual)), Times.Once);
+		}
+
+		[Test]
+		public void Parse_wormFilename_isSet_fileInRootNamespace()
+		{
+			this.pocoEntity.SetupGet(xx => xx.WormNamespace).Returns("Name");
+			this.pocoEntity.SetupGet(xx => xx.WormClassName).Returns("WormEntity");
+
+			this.typeToEntity.Parse(this.entityType.Object);
+
+			string expected = "WormEntity.cs";
 			this.pocoEntity.VerifySet(xx => xx.WormFilename = It.Is<String>(actual => expected.Equals(actual)), Times.Once);
 		}
 	}

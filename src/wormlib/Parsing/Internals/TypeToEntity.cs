@@ -3,6 +3,7 @@ using Worm.CodeGeneration;
 using Worm.Parsing.Internals.Reflection;
 using Worm.DataAnnotations;
 using System.IO;
+using System.Linq;
 
 namespace Worm.Parsing.Internals
 {
@@ -35,14 +36,24 @@ namespace Worm.Parsing.Internals
 
 			result.WormClassName = String.Format("Worm{0}", type.Name);
 			result.WormNamespace = String.Format("{0}.Db", result.PocoNamespace);
-			result.WormFilename = String.Format("{0}{1}{2}.cs", 
-				  result.WormNamespace.Replace(".", Path.DirectorySeparatorChar.ToString())
-				, Path.DirectorySeparatorChar
+			result.WormFilename = String.Format("{0}{1}.cs", 
+				  this.NamespaceAsPathAssumingUseOfRootNamespace(result.WormNamespace)
 				, result.WormClassName
 			);
 
-
 			return result;
+		}
+
+		private string NamespaceAsPathAssumingUseOfRootNamespace(string ns)
+		{
+			string[] parts = ns.Split(new char[]{ '.' }, StringSplitOptions.RemoveEmptyEntries);
+			if (parts.Length == 1)
+			{
+				return String.Empty; // assuming that the first level namespace represents the root
+			}
+
+			string path = String.Join(Path.DirectorySeparatorChar.ToString(), parts.Skip(1));
+			return String.Format("{0}{1}", path, Path.DirectorySeparatorChar);
 		}
 
 		#region Table name
