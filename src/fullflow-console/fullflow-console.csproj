@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{63E2778A-07CC-463E-A2B3-D1BCE29E7898}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>console</RootNamespace>
-    <AssemblyName>console</AssemblyName>
+    <RootNamespace>fullflowconsole</RootNamespace>
+    <AssemblyName>fullflowconsole</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +30,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Microsoft.Build.Engine" />
+    <Reference Include="Microsoft.Build.Framework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

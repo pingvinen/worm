@@ -1,6 +1,6 @@
 using System;
 
-namespace consumer
+namespace fullflowlib
 {
 	public enum Role
 	{

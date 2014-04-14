@@ -1,7 +1,7 @@
 using System;
 using Worm.DataAnnotations;
 
-namespace consumer
+namespace fullflowlib
 {
 	[WormDbFactory(typeof(Worm.MySql.MySqlWormDbFactory))]
 	[WormTable("persons")]

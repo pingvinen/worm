@@ -15,9 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-mysql", "wormlib-my
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wormlib-postgres", "wormlib-postgres\wormlib-postgres.csproj", "{AD912485-A811-4F0D-8F4B-1DFFC04E37AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consumer", "consumer\consumer.csproj", "{990780D2-34F6-418A-BAB3-96B1F51B8A66}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Full flow", "Full flow", "{C9084B3E-9DD3-451A-B405-D26EF18824DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.csproj", "{63E2778A-07CC-463E-A2B3-D1BCE29E7898}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fullflow-console", "fullflow-console\fullflow-console.csproj", "{63E2778A-07CC-463E-A2B3-D1BCE29E7898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fullflow-lib", "fullflow-lib\fullflow-lib.csproj", "{990780D2-34F6-418A-BAB3-96B1F51B8A66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,9 +59,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{91F77217-4DA2-4A8E-B1C1-8067F99855AD} = {702B13BF-17FF-4E75-AB22-9DEB3A1088E4}
 		{37AAA221-B39E-44A2-B9F3-EB6A24DAFED2} = {69E6ECF3-2822-43FB-AE2F-05AA3A34AAF0}
+		{63E2778A-07CC-463E-A2B3-D1BCE29E7898} = {C9084B3E-9DD3-451A-B405-D26EF18824DE}
+		{990780D2-34F6-418A-BAB3-96B1F51B8A66} = {C9084B3E-9DD3-451A-B405-D26EF18824DE}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = console\console.csproj
+		StartupItem = fullflow-console\fullflow-console.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
