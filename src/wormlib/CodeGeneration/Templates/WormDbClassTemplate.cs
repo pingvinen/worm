@@ -121,7 +121,7 @@ namespace Worm.CodeGeneration.Templates {
             #line hidden
             
             #line 22 "/home/pingvinen/gitclones/me/worm/src/wormlib/CodeGeneration/Templates/WormDbClassTemplate.tt"
-            this.Write(" override ");
+            this.Write(" new ");
             
             #line default
             #line hidden

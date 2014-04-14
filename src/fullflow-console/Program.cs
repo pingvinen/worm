@@ -64,12 +64,15 @@ namespace fullflowconsole
 			}
 
 			proj.Save(modelProjectFile);
+
+			// compile the project again
+			parser.Parse(modelProjectFile);
 		}
 
 		private static void WriteCodeFile(DirectoryInfo libRoot, CodeFile cf)
 		{
 			string filename = cf.Filename;
-			string fileDir = Path.Combine(libRoot.Parent.FullName, Path.GetDirectoryName(cf.Filename));
+			string fileDir = Path.Combine(libRoot.FullName, Path.GetDirectoryName(cf.Filename));
 			Directory.CreateDirectory(fileDir);
 			filename = Path.Combine(fileDir, Path.GetFileName(filename));
 

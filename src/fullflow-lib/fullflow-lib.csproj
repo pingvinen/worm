@@ -49,4 +49,7 @@
       <Name>wormlib-mysql</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Db\" />
+  </ItemGroup>
 </Project>
