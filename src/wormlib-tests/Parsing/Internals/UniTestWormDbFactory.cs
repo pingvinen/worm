@@ -1,6 +1,7 @@
 using System;
 using Worm;
 using Worm.CodeGeneration.Internals;
+using Worm.CodeGeneration;
 
 namespace Wormlibtests.Parsing.Internals
 {
@@ -16,6 +17,11 @@ namespace Wormlibtests.Parsing.Internals
 		}
 
 		public virtual IWormTemplateProvider GetTemplateProvider()
+		{
+			throw new NotImplementedException();
+		}
+
+		public virtual ISchema GetSchema()
 		{
 			throw new NotImplementedException();
 		}

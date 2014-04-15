@@ -1,6 +1,7 @@
 using System;
 using Worm.MySql.CodeGeneration;
 using Worm.CodeGeneration.Internals;
+using Worm.CodeGeneration;
 
 namespace Worm.MySql
 {
@@ -28,6 +29,19 @@ namespace Worm.MySql
 		public virtual IWormTemplateProvider GetTemplateProvider()
 		{
 			return new MySqlWormTemplateProvider();
+		}
+		#endregion
+
+		#region IWormDbFactory: GetSchema
+		public virtual ISchema GetSchema()
+		{
+			var schema = new MySqlSchema();
+			if (!this.connectionString.Equals(String.Empty))
+			{
+				// schema.Name = <db name from connection string>
+			}
+
+			return schema;
 		}
 		#endregion
 	}

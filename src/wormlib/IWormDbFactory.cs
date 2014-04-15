@@ -1,5 +1,6 @@
 using System;
 using Worm.CodeGeneration.Internals;
+using Worm.CodeGeneration;
 
 namespace Worm
 {
@@ -7,5 +8,6 @@ namespace Worm
 	{
 		IWormDbConnection CreateConnection();
 		IWormTemplateProvider GetTemplateProvider();
+		ISchema GetSchema();
 	}
 }

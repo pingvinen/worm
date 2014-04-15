@@ -59,6 +59,7 @@
     <Compile Include="CodeGeneration\DbInsertTemplate.cs" />
     <Compile Include="CodeGeneration\DbUpdateTemplate.cs" />
     <Compile Include="CodeGeneration\MySqlWormTemplateProvider.cs" />
+    <Compile Include="CodeGeneration\MySqlSchema.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

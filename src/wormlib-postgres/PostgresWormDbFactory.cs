@@ -1,6 +1,7 @@
 using System;
 using Worm.Postgres.CodeGeneration;
 using Worm.CodeGeneration.Internals;
+using Worm.CodeGeneration;
 
 namespace Worm.Postgres
 {
@@ -28,6 +29,13 @@ namespace Worm.Postgres
 		public IWormTemplateProvider GetTemplateProvider()
 		{
 			return new PostgressWormTemplateProvider();
+		}
+		#endregion
+
+		#region IWormDbFactory: GetSchema
+		public virtual ISchema GetSchema()
+		{
+			throw new NotImplementedException();
 		}
 		#endregion
 	}
