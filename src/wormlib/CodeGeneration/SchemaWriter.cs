@@ -5,13 +5,7 @@ namespace Worm.CodeGeneration
 {
 	public class SchemaWriter
 	{
-		private WormFactory factory;
 		private IDictionary<IWormDbFactory, ISchema> schemaByFactory = new Dictionary<IWormDbFactory, ISchema>();
-
-		public SchemaWriter(WormFactory factory)
-		{
-			this.factory = factory;
-		}
 
 		#region Add entity
 		public void AddEntity(PocoEntity entity)
@@ -34,7 +28,7 @@ namespace Worm.CodeGeneration
 			{
 				files.Add(new CodeFile() {
 					Content = kvp.Value.Render(),
-					Filename = String.Format("generated_schema_{0}.sql", kvp.Value.Name)
+					Filename = String.Format("generated_schema_{0}.{1}", kvp.Value.Name, kvp.Value.FileExtension)
 				});
 			}
 

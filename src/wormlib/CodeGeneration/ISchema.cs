@@ -6,6 +6,8 @@ namespace Worm.CodeGeneration
 	{
 		string Name { get; }
 
+		string FileExtension { get; }
+
 		void AddEntity(PocoEntity entity);
 
 		string Render();
