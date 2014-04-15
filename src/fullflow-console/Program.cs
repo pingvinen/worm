@@ -59,17 +59,31 @@ namespace fullflowconsole
 			{
 				CodeFile cf = writer.Generate(entity);
 				//cf.Filename = cf.Filename.Replace("fullflowlib", "fullflow-lib");
-				WriteCodeFile(libRoot, cf);
-				AddFileToProject(compileBuildItemGroup, cf);
+				WriteFile(libRoot, cf);
+				AddCodeFileToProject(compileBuildItemGroup, cf);
 			}
 
 			proj.Save(modelProjectFile);
 
 			// compile the project again
 			parser.Parse(modelProjectFile);
+
+			BuildItemGroup nonCodeBuildItemGroup = GetNoneIncludeBuildItemGroup(proj);
+			var schemaWriter = new SchemaWriter();
+			foreach (PocoEntity entity in model.Entities)
+			{
+				schemaWriter.AddEntity(entity);
+			}
+			foreach (CodeFile cf in schemaWriter.Render())
+			{
+				WriteFile(libRoot, cf);
+				AddNonCodeFileToProject(nonCodeBuildItemGroup, cf);
+			}
+
+			proj.Save(modelProjectFile);
 		}
 
-		private static void WriteCodeFile(DirectoryInfo libRoot, CodeFile cf)
+		private static void WriteFile(DirectoryInfo libRoot, CodeFile cf)
 		{
 			string filename = cf.Filename;
 			string fileDir = Path.Combine(libRoot.FullName, Path.GetDirectoryName(cf.Filename));
@@ -79,26 +93,46 @@ namespace fullflowconsole
 			File.WriteAllText(filename, cf.Content);
 		}
 
-		private static void AddFileToProject(BuildItemGroup itemGroup, CodeFile cf)
+		private static void AddCodeFileToProject(BuildItemGroup itemGroup, CodeFile cf)
+		{
+			WorkerAddFileToProject(itemGroup, "Compile", cf);
+		}
+
+		private static void AddNonCodeFileToProject(BuildItemGroup itemGroup, CodeFile cf)
+		{
+			WorkerAddFileToProject(itemGroup, "None", cf);
+		}
+
+		private static void WorkerAddFileToProject(BuildItemGroup itemGroup, string itemName, CodeFile cf)
 		{
 			string include = cf.Filename.Replace("/", "\\");
-			itemGroup.AddNewItem("Compile", include);
+			itemGroup.AddNewItem(itemName, include);
 		}
 
 		private static BuildItemGroup GetCompileIncludeBuildItemGroup(Project proj)
+		{
+			return GetAndEnsureBuildItemGroup(proj, "Compile");
+		}
+
+		private static BuildItemGroup GetNoneIncludeBuildItemGroup(Project proj)
+		{
+			return GetAndEnsureBuildItemGroup(proj, "None");
+		}
+
+		private static BuildItemGroup GetAndEnsureBuildItemGroup(Project proj, string itemType)
 		{
 			foreach (BuildItemGroup itemGroup in proj.ItemGroups)
 			{
 				foreach (BuildItem item in itemGroup)
 				{
-					if (item.Name.Equals("Compile") && !item.Include.Equals(String.Empty))
+					if (item.Name.Equals(itemType) && !item.Include.Equals(String.Empty))
 					{
 						return itemGroup;
 					}
 				}
 			}
 
-			return default(BuildItemGroup);
+			return proj.AddNewItemGroup();
 		}
 	}
 }

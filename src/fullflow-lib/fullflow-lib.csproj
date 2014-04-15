@@ -50,6 +50,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Db\" />
+    <None Include="generated_schema_mysql.sql" />
   </ItemGroup>
 </Project>
