@@ -26,7 +26,7 @@ namespace Worm.Parsing
 			TypeToEntity typeToEntity = this.factory.GetTypeToEntity();
 			WAssembly asm = new WAssembly(this.Compiler.CompileProject(projectFileName, configurationToCompile));
 
-			foreach (WType cur in asm.GetTypes(xx => xx.HasAttribute(typeof(WormDbFactoryAttribute))))
+			foreach (WType cur in asm.GetTypes(xx => xx.HasAttribute(typeof(WormDbFactoryAttribute)) && !xx.Name.StartsWith("Worm", StringComparison.InvariantCulture)))
 			{
 				result.Entities.Add(typeToEntity.Parse(cur));
 			}
