@@ -4,8 +4,6 @@ using Worm.Parsing;
 using Worm.CodeGeneration;
 using Worm.CodeGeneration.Internals;
 using Worm;
-using Microsoft.Build.BuildEngine;
-using System.Linq;
 
 namespace fullflowconsole
 {
@@ -13,7 +11,7 @@ namespace fullflowconsole
 	{
 		public static void Main(string[] args)
 		{
-			var parser = new Parser(new Worm.WormFactory());
+			var parser = new Parser(new WormFactory());
 			string workingDir = Directory.GetCurrentDirectory();
 
 			DirectoryInfo libRoot = Directory.GetParent(workingDir).Parent.Parent.GetDirectories("fullflow-lib")[0];
@@ -49,26 +47,22 @@ namespace fullflowconsole
 				Console.WriteLine();
 			}
 
-			Engine eng = new Engine();
-			Project proj = new Project(eng);
-			proj.Load(modelProjectFile);
-			BuildItemGroup compileBuildItemGroup = GetCompileIncludeBuildItemGroup(proj);
+			CsProject csProject = new CsProject();
+			csProject.Load(modelProjectFile);
 
 			var writer = new DbClassWriter(new WormFactory());
 			foreach (PocoEntity entity in model.Entities)
 			{
 				CodeFile cf = writer.Generate(entity);
-				//cf.Filename = cf.Filename.Replace("fullflowlib", "fullflow-lib");
 				WriteFile(libRoot, cf);
-				AddCodeFileToProject(compileBuildItemGroup, cf);
+				csProject.AddCodeFile(cf.Filename);
 			}
 
-			proj.Save(modelProjectFile);
+			csProject.Save();
 
 			// compile the project again
 			parser.Parse(modelProjectFile);
 
-			BuildItemGroup nonCodeBuildItemGroup = GetNoneIncludeBuildItemGroup(proj);
 			var schemaWriter = new SchemaWriter();
 			foreach (PocoEntity entity in model.Entities)
 			{
@@ -77,10 +71,10 @@ namespace fullflowconsole
 			foreach (CodeFile cf in schemaWriter.Render())
 			{
 				WriteFile(libRoot, cf);
-				AddNonCodeFileToProject(nonCodeBuildItemGroup, cf);
+				csProject.AddNonCodeFile(cf.Filename);
 			}
 
-			proj.Save(modelProjectFile);
+			csProject.Save();
 		}
 
 		private static void WriteFile(DirectoryInfo libRoot, CodeFile cf)
@@ -91,48 +85,6 @@ namespace fullflowconsole
 			filename = Path.Combine(fileDir, Path.GetFileName(filename));
 
 			File.WriteAllText(filename, cf.Content);
-		}
-
-		private static void AddCodeFileToProject(BuildItemGroup itemGroup, CodeFile cf)
-		{
-			WorkerAddFileToProject(itemGroup, "Compile", cf);
-		}
-
-		private static void AddNonCodeFileToProject(BuildItemGroup itemGroup, CodeFile cf)
-		{
-			WorkerAddFileToProject(itemGroup, "None", cf);
-		}
-
-		private static void WorkerAddFileToProject(BuildItemGroup itemGroup, string itemName, CodeFile cf)
-		{
-			string include = cf.Filename.Replace("/", "\\");
-			itemGroup.AddNewItem(itemName, include);
-		}
-
-		private static BuildItemGroup GetCompileIncludeBuildItemGroup(Project proj)
-		{
-			return GetAndEnsureBuildItemGroup(proj, "Compile");
-		}
-
-		private static BuildItemGroup GetNoneIncludeBuildItemGroup(Project proj)
-		{
-			return GetAndEnsureBuildItemGroup(proj, "None");
-		}
-
-		private static BuildItemGroup GetAndEnsureBuildItemGroup(Project proj, string itemType)
-		{
-			foreach (BuildItemGroup itemGroup in proj.ItemGroups)
-			{
-				foreach (BuildItem item in itemGroup)
-				{
-					if (item.Name.Equals(itemType) && !item.Include.Equals(String.Empty))
-					{
-						return itemGroup;
-					}
-				}
-			}
-
-			return proj.AddNewItemGroup();
 		}
 	}
 }
