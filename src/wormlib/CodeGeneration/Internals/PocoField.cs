@@ -15,6 +15,7 @@ namespace Worm.CodeGeneration.Internals
 		{
 			this.AllowNull = true;
 			this.IsEnum = false;
+			this.IsPrimaryKey = false;
 		}
 
 		/// <summary>

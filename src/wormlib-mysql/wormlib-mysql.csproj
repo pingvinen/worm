@@ -60,12 +60,16 @@
     <Compile Include="CodeGeneration\DbUpdateTemplate.cs" />
     <Compile Include="CodeGeneration\MySqlWormTemplateProvider.cs" />
     <Compile Include="CodeGeneration\MySqlSchema.cs" />
+    <Compile Include="CodeGeneration\SchemaWriting\Table.cs" />
+    <Compile Include="CodeGeneration\SchemaWriting\Column.cs" />
+    <Compile Include="CodeGeneration\SchemaWriting\TypeMapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="CodeGeneration\" />
     <Folder Include="CodeGeneration\Templates\" />
+    <Folder Include="CodeGeneration\SchemaWriting\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\wormlib\wormlib.csproj">
